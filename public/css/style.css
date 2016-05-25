@@ -1,0 +1,34 @@
+body{
+    padding-top: 90px;
+}
+.symbol
+{
+    color: red;
+    font-size: large;
+    font-weight: 900;
+}
+.labelcustomize
+{
+    font-size: medium;
+    border-radius: 2.25em;
+}
+
+@media (max-width: 425px) {
+
+    .form-control-static {
+        padding-top: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        white-space: nowrap;
+    .screenlogin {
+        width: 50%;
+    }
+    }
+
+}
+@media (min-width: 425px) {
+    .screenlogin {
+        width: 50%;
+    }
+}
