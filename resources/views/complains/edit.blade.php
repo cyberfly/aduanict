@@ -5,7 +5,7 @@
 
     @include('layouts.alert_message')
 
-    {!! Form::open(array('route' => ['complain.update',$complain->ADUAN_ID],'method'=>'put','class'=>"form-horizontal")) !!}
+    {!! Form::open(array('route' => ['complain.update',$complain->complain_id],'method'=>'put','class'=>"form-horizontal")) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Aduan</label>
                     <div class="col-sm-6">
-                        <p class="form-control-static">{{ $complain->aduan }}</p>
+                        <p class="form-control-static">{{ $complain->complain_description }}</p>
                     </div>
                 </div>
 

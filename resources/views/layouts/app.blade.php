@@ -11,6 +11,7 @@
 
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet"> {{--Mengelakkan masalah semasa penukaran sistem ke server berlainan --}}
     <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/chosen.min.css')}}" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -76,5 +77,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+<script src="{{URL::asset('js/chosen.jquery.min.js')}}"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(".chosen").chosen();
+</script>

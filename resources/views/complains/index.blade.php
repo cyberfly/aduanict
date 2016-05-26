@@ -43,18 +43,16 @@
                 @foreach($complains as $complain)
 
                 <tr>
-                    <td>{{ $complain->EMP_ID_ADUAN }}</td>
-                    <td>{{ str_limit($complain->ADUAN,20) }}</td>
+                    <td>{{ $complain->user_id }}</td>
+                    <td>{{ str_limit($complain->complain_description,20) }}</td>
                     <td>12/03/2016 9:30:05 am</td>
                     <td><span class="label label-primary">Baru</span></td>
                     <td>Pok Lee</td>
                     <td>
 
+                        {!! Form::open(array('route' => ['complain.destroy',$complain->complain_id],'method'=>'delete','class'=>"form-horizontal")) !!}
 
-
-                        {!! Form::open(array('route' => ['complain.destroy',$complain->ADUAN_ID],'method'=>'delete','class'=>"form-horizontal")) !!}
-
-                        <a href="{{ route('complain.edit', $complain->ADUAN_ID) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini</a>
+                        <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini</a>
 
                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</button>
 

@@ -41,25 +41,18 @@
                     <div class="col-sm-6">
                         <div class="input-group">
 
-                            {!! Form::select('login_daftar', $users, '', ['class' => 'form-control']); !!}
+                            {!! Form::select('user_emp_id', $users, '', ['class' => 'form-control chosen']); !!}
 
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bagiPihak">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                </button>
-                            </span>
                         </div><!-- /input-group -->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 col-xs-12 control-label">Kategori</label>
                     <div class="col-sm-3 col-xs-10">
-                        <select class="form-control input-sm">
-                            <option>Zakat2u</option>
-                            <option>Call Center</option>
-                            <option>Aplikasi</option>
-                        </select>
+
+                        {!! Form::select('complain_category_id', $complain_categories, '', ['class' => 'form-control input-sm']); !!}
+
+
                     </div>
                     <label class="col-sm-1 col-xs-2 control-label">
                         <span class="pull-left symbol"> * </span>
@@ -82,17 +75,15 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Kaedah</label>
                     <div class="col-sm-3">
-                        <select class="form-control input-sm">
-                            <option>Telefon</option>
-                            <option>Email</option>
-                            <option>Mesej</option>
-                        </select>
+
+                        {!! Form::select('complain_source_id', $complain_sources, '', ['class' => 'form-control input-sm']); !!}
+
                     </div>
                 </div>
-                <div class="form-group  {{ $errors->has('aduan') ? 'has-error' : false }} ">
+                <div class="form-group  {{ $errors->has('complain_description') ? 'has-error' : false }} ">
                     <label class="col-sm-2 control-label">Aduan</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" name="aduan" rows="3">{{ old('aduan') }}</textarea>
+                        <textarea class="form-control" name="complain_description" rows="3">{{ old('complain_description') }}</textarea>
                     </div>
                 </div>
                 <div class="form-group">

@@ -30,10 +30,10 @@ class ComplainRequest extends Request
 
         switch($this->method()) {
             case 'POST': {
-                return ['aduan' => 'required',];
+                return ['complain_description' => 'required',];
             }
             case 'PUT': {
-                return ['aduan' => 'required',];
+                return ['complain_description' => 'required',];
             }
 
             default:break;

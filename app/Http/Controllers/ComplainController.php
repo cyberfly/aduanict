@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Complain;
 use App\User;
+use App\ComplainSource;
+use App\ComplainCategory;
 
 use Validator;
 use App\Http\Requests\ComplainRequest;
@@ -46,7 +48,15 @@ class ComplainController extends Controller
 
         $users = array(''=>'Pilih Pengguna') + $users->all();
 
-        return view('complains/create',compact('users'));
+        //prepare complain category for dropdown
+
+        $complain_categories = $this->get_complain_categories();
+
+        //prepare complain source for dropdown
+
+        $complain_sources = $this->get_complain_sources();
+
+        return view('complains/create',compact('users','complain_categories','complain_sources'));
     }
 
     /**
@@ -57,22 +67,22 @@ class ComplainController extends Controller
      */
     public function store(ComplainRequest $request)
     {
-        $emp_id_aduan = Auth::user()->id;
+        $user_id = Auth::user()->id;
 
-        $aduan = $request->aduan;
-        $login_daftar = $request->login_daftar;
+        $complain_description = $request->complain_description;
+        $user_emp_id = $request->user_emp_id;
 
-        if (empty($login_daftar))
+        if (empty($user_emp_id))
         {
-            $login_daftar = Auth::user()->id;
+            $user_emp_id = Auth::user()->id;
         }
 
         //initilize complain object
 
         $complain = new Complain;
-        $complain->emp_id_aduan = $emp_id_aduan;
-        $complain->aduan = $aduan;
-        $complain->login_daftar = $login_daftar;
+        $complain->user_id = $user_id;
+        $complain->complain_description = $complain_description;
+        $complain->user_emp_id = $user_emp_id;
 
         //save complain object
 
@@ -118,11 +128,11 @@ class ComplainController extends Controller
      */
     public function update(ComplainRequest $request, $id)
     {
-        $aduan = $request->aduan;
+        $complain_description = $request->complain_description;
         
         $complain = Complain::find($id);
 
-        $complain->aduan = $aduan;
+        $complain->complain_description = $complain_description;
         
         $complain->save();
 
@@ -141,5 +151,29 @@ class ComplainController extends Controller
         $complain->delete();
 
         return back();
+    }
+
+    /*
+     * Get complain categories
+     * */
+
+    function get_complain_categories()
+    {
+        //prepare complain category for dropdown
+
+        $complain_categories = ComplainCategory::lists('description','category_id');
+
+        $complain_categories = array(''=>'Pilih Kategori') + $complain_categories->all();
+
+        return $complain_categories;
+    }
+
+    function get_complain_sources()
+    {
+        $complain_sources = ComplainSource::lists('description','source_id');
+
+        $complain_sources = array(''=>'Pilih Kaedah') + $complain_sources->all();
+
+        return $complain_sources;
     }
 }
