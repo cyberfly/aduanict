@@ -9,9 +9,13 @@
 
     <!-- Bootstrap -->
 
-    <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet"> {{--Mengelakkan masalah semasa penukaran sistem ke server berlainan --}}
-    <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('css/chosen.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/chosen.min.css') }}" rel="stylesheet">
+
+    <script>
+        var base_url = '{!! url('/') !!}';
+    </script>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -82,5 +86,12 @@
 </html>
 
 <script type="text/javascript">
-    $(".chosen").chosen();
+
+    $( document ).ready(function() {
+        $(".chosen").chosen();
+
+    });
+
 </script>
+
+@yield('script')

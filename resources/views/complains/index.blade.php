@@ -43,7 +43,19 @@
                 @foreach($complains as $complain)
 
                 <tr>
-                    <td>{{ $complain->user_id }}</td>
+                    <td>
+
+                        @if($complain->user)
+
+                            {{ $complain->user->name }}
+
+                        @else
+
+                            {{ $complain->user_id }}
+
+                        @endif
+
+                    </td>
                     <td>{{ str_limit($complain->complain_description,20) }}</td>
                     <td>12/03/2016 9:30:05 am</td>
                     <td><span class="label label-primary">Baru</span></td>

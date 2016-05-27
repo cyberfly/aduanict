@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AssetsLocation;
+use App\Branch;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,7 +31,6 @@ class ComplainController extends Controller
      */
     public function index()
     {
-
         $complains = Complain::paginate(20);
 
         return view('complains/index',compact('complains'));
@@ -56,7 +57,15 @@ class ComplainController extends Controller
 
         $complain_sources = $this->get_complain_sources();
 
-        return view('complains/create',compact('users','complain_categories','complain_sources'));
+        //prepare locations dropdown
+
+        $locations = $this->get_locations();
+
+        //prepare branch dropdown
+
+        $branches = $this->get_branches();
+
+        return view('complains/create',compact('users','complain_categories','complain_sources','locations','branches'));
     }
 
     /**
@@ -176,4 +185,50 @@ class ComplainController extends Controller
 
         return $complain_sources;
     }
+
+    function get_locations()
+    {
+        $branch_id = \Request::input('branch_id');
+
+        if (!empty($branch_id))
+        {
+            $locations = AssetsLocation::where('branch_id',$branch_id)->lists('location_description','location_id');
+        }
+        else
+        {
+            $locations = AssetsLocation::lists('location_description','location_id');
+        }
+
+        $locations = array(''=>'Pilih Lokasi') + $locations->all();
+
+        return $locations;
+    }
+
+    function get_assets()
+    {
+        $lokasi_id = \Request::input('lokasi_id');
+
+        if (!empty($lokasi_id))
+        {
+            $locations = AssetsLocation::where('lokasi_id',$lokasi_id)->lists('location_description','location_id');
+        }
+        else
+        {
+            $locations = AssetsLocation::lists('location_description','location_id');
+        }
+
+        $locations = array(''=>'Pilih Lokasi') + $locations->all();
+
+        return $locations;
+    }
+
+    function get_branches()
+    {
+        $branches = Branch::lists('branch_description','id');
+
+        $branches = array(''=>'Pilih Cawangan') + $branches->all();
+
+        return $branches;
+    }
+
 }

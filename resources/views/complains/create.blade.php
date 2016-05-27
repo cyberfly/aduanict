@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 col-xs-2 control-label">Tarikh </label>
                     <div class="col-sm-2 col-xs-10">
-                        <p class="form-control-static">18/05/2016</p>
+                        <p class="form-control-static">{{ date('d/m/Y') }}</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -29,11 +29,11 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Pengadu </label>
                     <div class="col-sm-2">
-                        <p class="form-control-static">Mohd Hafizullah asfgg dasdasdadasdas dasdasdasdasdasdasdasdaadaad </p>
+                        <p class="form-control-static">{{ Auth::user()->name }} </p>
                     </div>
                     <label class="col-sm-2 control-label">No. Pekerja </label>
                     <div class="col-sm-2">
-                        <p class="form-control-static">196</p>
+                        <p class="form-control-static">{{ Auth::user()->id }}</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +50,7 @@
                     <label class="col-sm-2 col-xs-12 control-label">Kategori</label>
                     <div class="col-sm-3 col-xs-10">
 
-                        {!! Form::select('complain_category_id', $complain_categories, '', ['class' => 'form-control input-sm']); !!}
+                        {!! Form::select('complain_category_id', $complain_categories, '', ['class' => 'form-control chosen', 'id'=>'complain_category_id']); !!}
 
 
                     </div>
@@ -59,16 +59,33 @@
                     </label>
 
                 </div>
-                <div class="form-group">
+                <div class="form-group hide_by_category">
+                    <label class="col-sm-2 control-label">Cawangan</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+
+                            {!! Form::select('branch_id', $branches, '', ['class' => 'form-control chosen', 'id'=>'branch_id']); !!}
+
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+                <div class="form-group hide_by_category">
+                    <label class="col-sm-2 control-label">Lokasi</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+
+                            {!! Form::select('lokasi_id', $locations, '', ['class' => 'form-control chosen', 'id'=>'lokasi_id']); !!}
+
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+                <div class="form-group hide_by_category">
                     <label class="col-sm-2 control-label">Aset</label>
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Aset">
-                                    <span class="glyphicon glyphicon-search color" aria-hidden="true"></span>
-                                </button>
-                            </span>
+
+                            {!! Form::select('ict_no', array(), '', ['class' => 'form-control chosen', 'id'=>'ict_no']); !!}
+
                         </div><!-- /input-group -->
                     </div>
                 </div>
@@ -76,7 +93,7 @@
                     <label class="col-sm-2 control-label">Kaedah</label>
                     <div class="col-sm-3">
 
-                        {!! Form::select('complain_source_id', $complain_sources, '', ['class' => 'form-control input-sm']); !!}
+                        {!! Form::select('complain_source_id', $complain_sources, '', ['class' => 'form-control chosen']); !!}
 
                     </div>
                 </div>
@@ -148,4 +165,126 @@
     </div>
 </div>
 
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+
+        $( document ).ready(function() {
+
+
+
+            $( "#complain_category_id" ).change(function() {
+
+                var complain_category_id = $(this).val();
+                show_hide_by_category(complain_category_id);
+
+            });
+
+
+            //dapatkan current value branch_id, by input ID
+
+            $( "#branch_id" ).change(function() {
+
+                var branch_id = $(this).val();
+                get_locations_by_branch(branch_id);
+
+            });
+
+            $( "#lokasi_id" ).change(function() {
+
+                var lokasi_id = $(this).val();
+                get_assets_by_location(lokasi_id);
+
+            });
+
+            function show_hide_by_category(complain_category_id)
+            {
+                //if zakat2u and zakat portal, hide branch, location and asset
+
+                if(complain_category_id==5||complain_category_id==6)
+                {
+                    $('.hide_by_category').hide();
+                }
+                else{
+                    $('.hide_by_category').show();
+                }
+            }
+
+            function get_locations_by_branch(branch_id)
+            {
+
+                $.ajax({
+                    type: "GET",
+                    url: base_url + '/complain/locations',
+                    dataType: "json",
+                    data:
+                    {
+                        branch_id : branch_id
+                    },
+                    beforeSend: function() {
+
+                    },
+                    success: function (location_data) {
+
+                        //empty current dropdown option
+
+                        $("#lokasi_id").empty();
+
+                        //create a new dropdown option using the data provided by json object
+
+                        $.each(location_data, function(key, value) {
+                            $("#lokasi_id").append("<option value='"+ key +"'>" + value + "</option>");
+                        });
+
+                        //reinitiliaze chosen dropdown with new value
+
+                        $("#lokasi_id").trigger("chosen:updated");
+
+                    }
+                });
+
+
+            }
+
+            function get_assets_by_location(lokasi_id)
+            {
+
+                $.ajax({
+                    type: "GET",
+                    url: base_url + '/complain/assets',
+                    dataType: "json",
+                    data:
+                    {
+                        lokasi_id : lokasi_id
+                    },
+                    beforeSend: function() {
+
+                    },
+                    success: function (location_data) {
+
+                        //empty current dropdown option
+
+                        $("#ict_no").empty();
+
+                        //create a new dropdown option using the data provided by json object
+
+                        $.each(location_data, function(key, value) {
+                            $("#ict_no").append("<option value='"+ key +"'>" + value + "</option>");
+                        });
+
+                    }
+                });
+
+
+            }
+
+
+//            var branch_id = $("#branch_id").val();
+//
+//            alert(branch_id);
+
+        });
+
+    </script>
 @endsection

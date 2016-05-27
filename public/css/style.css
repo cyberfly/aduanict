@@ -13,6 +13,11 @@ body{
     border-radius: 2.25em;
 }
 
+.hide_div
+{
+    display: none;
+}
+
 @media (max-width: 425px) {
 
     .form-control-static {

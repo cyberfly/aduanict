@@ -30,7 +30,7 @@ class Complain extends Model
 
     public function complain_category()
     {
-        return $this->belongsTo('App\ComplainCategory');
+        return $this->belongsTo('App\ComplainCategory','complain_category_id','category_id');
     }
 
     public function complain_status()

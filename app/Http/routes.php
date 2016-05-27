@@ -36,7 +36,8 @@ Route::get('aduan/show', function () {
 });
 
 */
-
+Route::get('complain/assets','ComplainController@get_assets');
+Route::get('complain/locations','ComplainController@get_locations');
 Route::resource('complain', 'ComplainController');
 
 Route::auth();
