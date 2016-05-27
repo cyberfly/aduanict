@@ -57,7 +57,7 @@
 
                     </td>
                     <td>{{ str_limit($complain->complain_description,20) }}</td>
-                    <td>12/03/2016 9:30:05 am</td>
+                    <td>{{ $complain->created_at }}</td>
                     <td><span class="label label-primary">Baru</span></td>
                     <td>Pok Lee</td>
                     <td>

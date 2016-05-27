@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="008176e1-3550-450e-83f1-4c923837a888" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/HelpdeskComplainController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Complain.php" afterPath="$PROJECT_DIR$/app/Complain.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplainController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplainController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/ComplainRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/ComplainRequest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/complains/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/complains/create.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/complains/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/complains/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
     </list>
     <ignored path="eaduan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,14 +29,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ComplainController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ComplainController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComplainController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="207" column="5" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
+            <state relative-caret-position="4978">
+              <caret line="262" column="1" selection-start-line="262" selection-start-column="1" selection-end-line="262" selection-end-column="1" />
               <folding>
                 <element signature="e#40#63#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComplainRequest.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Requests/ComplainRequest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="785">
+              <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,8 +64,8 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/complains/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+            <state relative-caret-position="1121">
+              <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -66,8 +74,8 @@
       <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/complains/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="211" column="13" selection-start-line="211" selection-start-column="13" selection-end-line="211" selection-end-column="13" />
+            <state relative-caret-position="342">
+              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -148,15 +156,15 @@
         <option value="$PROJECT_DIR$/app/ComplainCategory.php" />
         <option value="$PROJECT_DIR$/app/ComplainStatus.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/ComplainRequest.php" />
         <option value="$PROJECT_DIR$/app/Complain.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_05_26_023211_create_branches_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/complains/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ComplainController.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/create.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/resources/views/complains/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/ComplainRequest.php" />
       </list>
     </option>
   </component>
@@ -175,8 +183,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1024" />
-    <option name="height" value="768" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -408,7 +416,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="route&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/routes.php&#10;index&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;comcon&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;app&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/layouts/app.blade.php&#10;user&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/User.php&#10;auth&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/Auth/AuthController.php&#10;routes&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/routes.php&#10;complai&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;comp&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;conf/app&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/config/app.php&#10;composer.json&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/composer.json&#10;com/index&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;env&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/.env" />
+    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;complai&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;route&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/routes.php&#10;comcon&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;app&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/layouts/app.blade.php&#10;user&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/User.php&#10;auth&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/Auth/AuthController.php&#10;routes&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/routes.php&#10;comp&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;conf/app&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/config/app.php&#10;composer.json&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/composer.json&#10;com/index&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;env&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/.env" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="true" />
@@ -479,19 +487,19 @@
       <updated>1463925938331</updated>
       <workItem from="1463925939672" duration="2737000" />
       <workItem from="1463976777695" duration="40481000" />
-      <workItem from="1464157610826" duration="26732000" />
+      <workItem from="1464157610826" duration="32527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69950000" />
+    <option name="totallyTimeSpent" value="75745000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1024" height="768" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.200611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.029818956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -520,7 +528,9 @@
     </ignored-roots>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -778,14 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/ComplainRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_05_26_015533_create_branches_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -818,14 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/complains/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
@@ -852,14 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Complain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -868,21 +854,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Complain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/complains/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="211" column="13" selection-start-line="211" selection-start-column="13" selection-end-line="211" selection-end-column="13" />
+        <state relative-caret-position="342">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/complains/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1121">
+          <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComplainController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="207" column="5" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
+        <state relative-caret-position="4978">
+          <caret line="262" column="1" selection-start-line="262" selection-start-column="1" selection-end-line="262" selection-end-column="1" />
           <folding>
             <element signature="e#40#63#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/ComplainRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="785">
+          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

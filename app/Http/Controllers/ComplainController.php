@@ -65,7 +65,11 @@ class ComplainController extends Controller
 
         $branches = $this->get_branches();
 
-        return view('complains/create',compact('users','complain_categories','complain_sources','locations','branches'));
+        //prepare assets dropdown
+
+        $assets = $this->get_assets();
+
+        return view('complains/create',compact('users','complain_categories','complain_sources','locations','branches','assets'));
     }
 
     /**
@@ -92,6 +96,24 @@ class ComplainController extends Controller
         $complain->user_id = $user_id;
         $complain->complain_description = $complain_description;
         $complain->user_emp_id = $user_emp_id;
+
+        $complain->complain_category_id = $request->complain_category_id;
+        $complain->complain_source_id = $request->complain_source_id;
+
+        $aduan_category_exception_value = array('5','6');
+
+        if (!in_array($request->complain_category_id,$aduan_category_exception_value))
+        {
+            //$complain->branch_id = $request->branch_id;
+            $complain->lokasi_id = $request->lokasi_id;
+            $complain->ict_no = $request->ict_no;
+        }
+        else
+        {
+            //$complain->branch_id = null;
+            $complain->lokasi_id = null;
+            $complain->ict_no = null;
+        }
 
         //save complain object
 
@@ -205,6 +227,13 @@ class ComplainController extends Controller
     }
 
     function get_assets()
+    {
+        $assets = array('1'=>'PC','2'=>'Laptop','3'=>'Projektor');
+
+        return $assets;
+    }
+
+    function get_assets_real()
     {
         $lokasi_id = \Request::input('lokasi_id');
 
