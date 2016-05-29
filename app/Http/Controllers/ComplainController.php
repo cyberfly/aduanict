@@ -31,7 +31,7 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        $complains = Complain::paginate(20);
+        $complains = Complain::orderBy('complain_id','desc')->paginate(20);
 
         return view('complains/index',compact('complains'));
     }

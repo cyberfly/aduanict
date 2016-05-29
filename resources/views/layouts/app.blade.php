@@ -70,6 +70,8 @@
 </nav>
 <div class="container">
 
+    @yield('content_filter')
+
     @yield('content')
 
 </div>
