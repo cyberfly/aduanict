@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AssetsLocation;
 use App\Branch;
+use App\ComplainStatus;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,6 +16,7 @@ use App\ComplainCategory;
 use Validator;
 use App\Http\Requests\ComplainRequest;
 use Auth;
+use Entrust;
 
 class ComplainController extends Controller
 {
@@ -22,6 +24,13 @@ class ComplainController extends Controller
     public function __construct(Request $request)
     {
         $this->middleware('auth');
+
+        $this->user_id = 0;
+
+        if (Auth::check()) {
+            $this->user_id = Auth::user()->id;
+        }
+
     }
 
     /**
@@ -31,7 +40,25 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        $complains = Complain::paginate(20);
+        if (Entrust::hasRole('members'))
+        {
+            /*
+             * 1. Filter by user_emp_id
+             * 2. Or filter by action_emp_id
+             * 3. Or user_id
+             * */
+
+
+            $complains = Complain::where('user_emp_id',$this->user_id)->
+                                    orWhere('action_emp_id', $this->user_id)->
+                                    orWhere('user_id', $this->user_id)->
+                                    orderBy('complain_id','desc')->
+                                    paginate(20);
+        }
+        else
+        {
+            $complains = Complain::orderBy('complain_id','desc')->paginate(20);
+        }
 
         return view('complains/index',compact('complains'));
     }
@@ -147,7 +174,9 @@ class ComplainController extends Controller
     {
         $complain = Complain::find($id);
 
-        return view('complains/edit',compact('complain'));
+        $complain_statuses = ComplainStatus::lists('description','status_id');
+
+        return view('complains/edit',compact('complain','complain_statuses'));
     }
 
     /**
@@ -165,6 +194,36 @@ class ComplainController extends Controller
 
         $complain->complain_description = $complain_description;
         
+        $complain->save();
+
+        return back();
+    }
+
+    /*
+     * helpdesk action view
+     * */
+
+    public function action($id)
+    {
+        $complain = Complain::find($id);
+
+        $complain_statuses = ComplainStatus::lists('description','status_id');
+
+        return view('complains/action',compact('complain','complain_statuses'));
+    }
+
+    /*
+     * helpdesk update action
+     * */
+
+    public function update_action(Request $request, $id)
+    {
+        $complain = Complain::find($id);
+
+        $complain->complain_status_id = $request->complain_status_id;
+        $complain->action_comment = $request->action_comment;
+        $complain->delay_reason = $request->delay_reason;
+
         $complain->save();
 
         return back();

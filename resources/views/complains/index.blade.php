@@ -64,7 +64,17 @@
 
                         {!! Form::open(array('route' => ['complain.destroy',$complain->complain_id],'method'=>'delete','class'=>"form-horizontal")) !!}
 
-                        <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini</a>
+                        @if(Entrust::can('action_complain'))
+
+                            <a href="{{ route('complain.action', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini</a>
+
+                        @elseif(Entrust::can('edit_complain'))
+
+                            <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini</a>
+
+                        @endif
+
+
 
                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</button>
 

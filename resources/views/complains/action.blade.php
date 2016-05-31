@@ -5,7 +5,7 @@
 
     @include('layouts.alert_message')
 
-    {!! Form::open(array('route' => ['complain.update',$complain->complain_id],'method'=>'put','class'=>"form-horizontal")) !!}
+    {!! Form::open(array('route' => ['complain.update_action',$complain->complain_id],'method'=>'put','class'=>"form-horizontal")) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Pengadu </label>
                     <div class="col-sm-2">
-                        <p class="form-control-static">{{ $complain->EMP_ID_ADUAN }}</p>
+                        <p class="form-control-static">{{ $complain->emp_id_aduan }}</p>
                     </div>
                     <label class="col-sm-2 control-label">No. Pekerja </label>
                     <div class="col-sm-2">
@@ -93,7 +93,7 @@
                     <label class="col-sm-2 col-xs-12 control-label">Status</label>
                     <div class="col-sm-3 col-xs-10">
 
-                        {!! Form::select('complain_status_id', $complain_statuses, '', ['class' => 'form-control chosen']); !!}
+                        {!! Form::select('complain_status_id', $complain_statuses, $complain->complain_status_id, ['class' => 'form-control chosen']); !!}
 
                     </div>
                     <label class="col-sm-1 col-xs-1 control-label">
@@ -103,13 +103,13 @@
                 <div class="form-group">
                     <label class="col-sm-2 col-xs-12 control-label">Tindakan <span class="symbol"> * </span></label>
                     <div class="col-sm-6 col-xs-10">
-                        <textarea class="form-control" rows="3" name="action_comment"></textarea>
+                        <textarea class="form-control" rows="3" name="action_comment">{{ old('action_comment',$complain->action_comment) }}</textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 col-xs-12 control-label">Sebab Lewat</label>
                     <div class="col-sm-6 col-xs-10">
-                        <textarea class="form-control" rows="3" name="delay_reason"></textarea>
+                        <textarea class="form-control" rows="3" name="delay_reason">{{ old('delay_reason',$complain->delay_reason) }}</textarea>
                     </div>
                 </div>
                 <div class="form-group">

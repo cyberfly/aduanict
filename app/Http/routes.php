@@ -36,6 +36,8 @@ Route::get('aduan/show', function () {
 });
 
 */
+Route::get('complain/{id}/action','ComplainController@action')->name('complain.action');
+Route::put('complain/{id}','ComplainController@update_action')->name('complain.update_action');
 Route::get('complain/assets','ComplainController@get_assets');
 Route::get('complain/locations','ComplainController@get_locations');
 Route::resource('complain', 'ComplainController');
@@ -43,3 +45,16 @@ Route::resource('complain', 'ComplainController');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+/** ------------------------------------------
+ *  Admin Routes
+ *  ------------------------------------------
+ */
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::resource('users', 'Admin\AdminUsersController');
+    Route::resource('roles', 'Admin\AdminRolesController');
+    Route::resource('permissions', 'Admin\AdminPermissionsController');
+
+});
