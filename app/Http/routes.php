@@ -36,8 +36,15 @@ Route::get('aduan/show', function () {
 });
 
 */
+Route::get('complain/assign','ComplainController@assign')->name('complain.assign');
+Route::get('complain/{complain}/assign','ComplainController@assign_staff')->name('complain.assign_staff');
+Route::put('complain/assign/{complain}','ComplainController@update_assign_staff')->name('complain.update_assign_staff');
+
+
 Route::get('complain/{id}/action','ComplainController@action')->name('complain.action');
-Route::put('complain/{id}','ComplainController@update_action')->name('complain.update_action');
+Route::put('complain/action/{complain}','ComplainController@update_action')->name('complain.update_action');
+
+Route::put('complain/verify/{complain}','ComplainController@verify')->name('complain.verify');
 Route::get('complain/assets','ComplainController@get_assets');
 Route::get('complain/locations','ComplainController@get_locations');
 Route::resource('complain', 'ComplainController');

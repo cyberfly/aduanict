@@ -23,6 +23,12 @@ class ComplainRequest extends Request
      */
     public function rules()
     {
+        $route_name = $this->route()->getName();
+
+        //dd($this->submit_type);
+
+        //dd($route_name);
+
         /*
          * Method POST ialah validation bagi CREATE
          * Method PUT ialah validation bagi EDIT
@@ -31,7 +37,7 @@ class ComplainRequest extends Request
         switch($this->method()) {
             case 'POST': {
 
-                $validaton_rules = array(
+                $validation_rules = array(
                                     'complain_category_id' => 'required',
                                     'complain_source_id' => 'required',
                                     'complain_description' => 'required',
@@ -51,19 +57,48 @@ class ComplainRequest extends Request
 
                 if (!in_array($this->complain_category_id,$aduan_category_exception_value))
                 {
-                    $validaton_rules = $others_field_validation + $validaton_rules;
+                    $validation_rules = $others_field_validation + $validation_rules;
                 }
 
-                return $validaton_rules;
+                return $validation_rules;
             }
             case 'PUT': {
-                return ['complain_description' => 'required',];
+
+                $validation_rules = array();
+
+                if ($route_name=='complain.update')
+                {
+                    //kemaskini complain validation_rules
+
+                    $validation_rules = array(
+                        'complain_category_id' => 'required',
+                        'lokasi_id' => 'required',
+                        'ict_no' => 'required');
+                }
+                else if ($route_name=='complain.update_action')
+                {
+                    //kemaskini complain icthelpdesk ation validation_rules
+
+                    if (!$this->has('submit_type')) {
+
+                        $validation_rules = array(
+                            'complain_status_id' => 'required',
+                            'action_comment' => 'required',
+                        );
+
+                    }
+
+                }
+
+                return $validation_rules;
             }
 
             default:break;
         }
 
     }
+
+    //customize validation message
 
     public function messages()
     {
@@ -74,6 +109,7 @@ class ComplainRequest extends Request
             'complain_category_id.required'  => 'Kategori adalah wajib',
             'complain_source_id.required'  => 'Kaedah adalah wajib',
             'complain_description.required'  => 'Aduan adalah wajib',
+            'action_comment.required'  => 'Tindakan adalah wajib',
         ];
     }
 

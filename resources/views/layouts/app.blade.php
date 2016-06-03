@@ -46,7 +46,7 @@
                     @role('admin')
 
                     <li>
-                        <a href="{{ route('admin.users.index')  }}">Admin Panel</a>
+                        <a href="{{ route('admin.users.index')  }}"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Admin Panel</a>
                     </li>
 
                     @endrole
@@ -54,11 +54,18 @@
                     <li>
                         <a href="{{ route('complain.create')  }}">Tambah Aduan</a>
                     </li>
-                    <li class="active">
-                        <a href="#">
+                    <li class="">
+                        <a href="{{ route('complain.index')  }}">
                             Senarai Aduan
                         </a>
                     </li>
+                    @role('unit_manager')
+                    <li class="">
+                        <a href="{{ route('complain.assign')  }}">
+                            Senarai Agihan
+                        </a>
+                    </li>
+                    @endrole
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
@@ -78,6 +85,8 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
+
+    @include('flash::message')
 
     @yield('content')
 

@@ -18,6 +18,16 @@ class Complain extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function asset()
+    {
+        return $this->belongsTo('App\Asset','ict_no','id');
+    }
+
+    public function assets_location()
+    {
+        return $this->belongsTo('App\AssetsLocation','lokasi_id','location_id');
+    }
+
     public function complain_level()
     {
         return $this->belongsTo('App\ComplainLevel');
@@ -25,7 +35,7 @@ class Complain extends Model
 
     public function complain_source()
     {
-        return $this->belongsTo('App\ComplainSource');
+        return $this->belongsTo('App\ComplainSource','complain_source_id','source_id');
     }
 
     public function complain_category()
@@ -51,6 +61,11 @@ class Complain extends Model
     public function attachments()
     {
         return $this->morphMany('App\ComplainAttachment', 'attachable');
+    }
+    
+    public function complain_action()
+    {
+        return $this->hasMany('App\ComplainAction','complain_id','complain_id');
     }
 
 }

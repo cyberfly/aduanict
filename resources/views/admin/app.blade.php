@@ -43,7 +43,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{ route('complain.index') }}">Panel Pengguna</a>
+                        <a href="{{ route('complain.index') }}"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> Panel Pengguna</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.users.index') }}">Urus Pengguna</a>

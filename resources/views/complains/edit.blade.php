@@ -5,125 +5,56 @@
 
     @include('layouts.alert_message')
 
-    {!! Form::open(array('route' => ['complain.update',$complain->complain_id],'method'=>'put','class'=>"form-horizontal")) !!}
+    @include('partials.complain_notification')
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Maklumat Aduan</h3>
-        </div>
-        <div class="panel-body">
+    {{--include edit form if --}}
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Tarikh </label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">18/05/2016</p>
-                    </div>
-                    <label class="col-sm-2 control-label">Masa </label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">9:05:15:16 am</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Pengadu </label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">{{ $complain->EMP_ID_ADUAN }}</p>
-                    </div>
-                    <label class="col-sm-2 control-label">No. Pekerja </label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">196</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Bagi Pihak</label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">- </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Kategori</label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">Perkakasan </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Aset</label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">Komputer 1 </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Kaedah</label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">Telefon </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Aduan</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static">{{ $complain->complain_description }}</p>
-                    </div>
-                </div>
+    @if($complain->complain_status_id==1)
 
-        </div>
-    </div>
-    <!--end-->
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">Tindakan ICT Helpdeck</h3>
-        </div>
-        <div class="panel-body">
+    @include('complains.partials.edit_form')
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Tarikh </label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">18/05/2016</p>
-                    </div>
-                    <label class="col-sm-2 control-label">Masa </label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">9:05:15:16 am</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Bahagian/Unit </label>
-                    <div class="col-sm-2">
-                        <p class="form-control-static">Unit Perkakasan & Perisian</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 col-xs-12 control-label">Status</label>
-                    <div class="col-sm-3 col-xs-10">
+    @else
 
-                        {!! Form::select('complain_status_id', $complain_statuses, '', ['class' => 'form-control chosen']); !!}
+    @include('complains.partials.verify_form')
 
-                    </div>
-                    <label class="col-sm-1 col-xs-1 control-label">
-                        <span class="pull-left symbol"> * </span>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 col-xs-12 control-label">Tindakan <span class="symbol"> * </span></label>
-                    <div class="col-sm-6 col-xs-10">
-                        <textarea class="form-control" rows="3" name="action_comment"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 col-xs-12 control-label">Sebab Lewat</label>
-                    <div class="col-sm-6 col-xs-10">
-                        <textarea class="form-control" rows="3" name="delay_reason"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+    @endif
 
-                        <button type="submit" class="btn btn-primary">Hantar</button>
-                        <a href="{{ route('complain.index') }}" class="btn btn-default">Kembali</a>
+    {{--latest helpdesk action --}}
 
-                    </div>
-                </div>
+    @include('complains.partials.complain_action_log')
 
-        </div>
-    </div>
+@endsection
 
-    {!! Form::close() !!}
+@section('script')
+
+    <script type="text/javascript">
+
+        $( document ).ready(function() {
+
+            $("#submit_finish").click(function() {
+                var submit_type = 'finish';
+                submit_form(submit_type);
+            });
+
+            $("#submit_reject").click(function() {
+                var submit_type = 'reject';
+                submit_form(submit_type);
+            });
+
+
+            function submit_form(submit_type)
+            {
+                //letak value for hidden field
+
+                $('#submit_type').val(submit_type);
+
+                //suruh javascript submit form bukannya button submit
+
+                $('#form1').submit();
+            }
+
+        });
+
+    </script>
 
 @endsection

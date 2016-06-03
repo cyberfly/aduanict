@@ -105,6 +105,7 @@
                     <button type="submit" class="btn btn-primary">Hantar</button>
                     <a href="{{ route('complain.index') }}" class="btn btn-default">Kembali</a>
                 </div>
+                </div>
             </div>
 
             {!! Form::close() !!}
