@@ -45,7 +45,7 @@ class Complain extends Model
 
     public function complain_status()
     {
-        return $this->belongsTo('App\ComplainStatus');
+        return $this->belongsTo('App\ComplainStatus','complain_status_id','status_id');
     }
 
     public function action_user()
@@ -58,6 +58,11 @@ class Complain extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function assign_user()
+    {
+        return $this->belongsTo('App\User','action_emp_id','id');
+    }
+
     public function attachments()
     {
         return $this->morphMany('App\ComplainAttachment', 'attachable');
@@ -66,6 +71,11 @@ class Complain extends Model
     public function complain_action()
     {
         return $this->hasMany('App\ComplainAction','complain_id','complain_id');
+    }
+
+    public function kod_unit()
+    {
+        return $this->belongsTo('App\KodUnit','unit_id','kod_id');
     }
 
 }

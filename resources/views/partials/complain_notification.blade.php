@@ -8,6 +8,22 @@
 
     @endrole
 
+    @role('members')
+
+    <div class="alert alert-warning">
+        Aduan sedang menunggu tindakan dari ICT Helpdesk / Teknikal.
+    </div>
+
+    @endrole
+
+    @role('ict_helpdesk')
+
+    <div class="alert alert-warning">
+        Aduan sedang menunggu tindakan dari ICT Helpdesk.
+    </div>
+
+    @endrole
+
 @elseif($complain->complain_status_id==3)
 
     <div class="alert alert-warning">

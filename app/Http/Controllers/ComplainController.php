@@ -7,6 +7,11 @@ use App\AssetsLocation;
 use App\Branch;
 use App\ComplainAction;
 use App\ComplainStatus;
+use App\Events\ComplainAssignStaff;
+use App\Events\ComplainCreated;
+use App\Events\ComplainHelpdeskAction;
+use App\Events\ComplainTechnicalAction;
+use App\Events\ComplainUserVerify;
 use App\KodUnit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,6 +23,7 @@ use App\ComplainSource;
 use App\ComplainCategory;
 
 use Illuminate\Support\Facades\DB;
+use Event;
 use Validator;
 use App\Http\Requests\ComplainRequest;
 use Auth;
@@ -176,6 +182,10 @@ class ComplainController extends Controller
 
         $complain->save();
 
+        //event success complain
+
+        Event::fire(new ComplainCreated($complain));
+
         //after success, redirect to index
 
         if($request->ajax()){
@@ -319,6 +329,10 @@ class ComplainController extends Controller
 
         $complain->save();
 
+        //user verify event
+
+        Event::fire(new ComplainUserVerify($complain));
+
         //simpan sebagai history
 
         $complain_action = new ComplainAction;
@@ -401,6 +415,10 @@ class ComplainController extends Controller
         }
 
         $complain->save();
+
+        //event when helpdesk submit action
+
+        Event::fire(new ComplainHelpdeskAction($complain));
 
         //insert into complain action as logs
 
@@ -492,6 +510,10 @@ class ComplainController extends Controller
 
         $complain->save();
 
+        //technical action event
+
+        Event::fire(new ComplainTechnicalAction($complain));
+
         //simpan action log if SAHKAN (P)
 
         if($request->complain_status_id=='3')
@@ -573,7 +595,9 @@ class ComplainController extends Controller
         $complain->complain_status_id = 2;
         $complain->save();
 
-        //insert into complain action logs
+        //assign staff event
+
+        Event::fire(new ComplainAssignStaff($complain));
 
         //insert into complain action as logs
 

@@ -83,7 +83,10 @@
                         {
                             $status = '<span class="label label-success">Selesai</span>';
                         }
-
+                        else if($complain->complain_status_id==7)
+                        {
+                            $status = '<span class="label label-warning">Agihan</span>';
+                        }
 
                         ?>
 

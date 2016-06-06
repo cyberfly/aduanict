@@ -11,7 +11,7 @@
 
     @if($complain->complain_status_id==1)
 
-    @include('complains.partials.edit_form')
+    @include('complains.partials.edit_form', ['exclude_category'=>'N'])
 
     @else
 
@@ -24,7 +24,7 @@
 
     {{--do not show helpdesk form if complain status AGIHAN--}}
 
-    @if($complain->complain_status_id!=7 &&  $complain->complain_status_id!=5 && $complain->complain_status_id!=4)
+    @if($complain->complain_status_id!=7 && $complain->complain_status_id!=5 && $complain->complain_status_id!=3)
 
     {!! Form::open(array('route' => ['complain.update_action',$complain->complain_id],'method'=>'put','class'=>"form-horizontal", 'id'=>'form1')) !!}
 
@@ -38,7 +38,7 @@
             <div class="panel-body">
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Tarikh </label>
+                    <label class="col-sm-2 control-label">Tarikh</label>
                     <div class="col-sm-2">
                         <p class="form-control-static"><?php echo date('d/m/Y'); ?></p>
                     </div>
