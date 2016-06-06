@@ -12,6 +12,7 @@
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/chosen.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/sweetalert.css') }}" rel="stylesheet">
 
     <script>
         var base_url = '{!! url('/') !!}';
@@ -100,13 +101,18 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
 <script src="{{URL::asset('js/chosen.jquery.min.js')}}"></script>
+<script src="{{URL::asset('js/sweetalert.min.js')}}"></script>
+<script src="{{URL::asset('js/ajax_helpers.js')}}"></script>
 </body>
 </html>
 
 <script type="text/javascript">
 
     $( document ).ready(function() {
+
         $(".chosen").chosen();
+
+
 
     });
 

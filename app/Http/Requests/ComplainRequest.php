@@ -68,12 +68,22 @@ class ComplainRequest extends Request
 
                 if ($route_name=='complain.update')
                 {
+//                    dd($this->exclude_category);
+
                     //kemaskini complain validation_rules
 
                     $validation_rules = array(
                         'complain_category_id' => 'required',
                         'lokasi_id' => 'required',
                         'ict_no' => 'required');
+
+//                  //kalau TEKNIKAL EDIT FORM, tak perlu kategori id
+
+                    if ($this->exclude_category=='Y')
+                    {
+                        array_pull($validation_rules, 'complain_category_id');
+                    }
+
                 }
                 else if ($route_name=='complain.update_action')
                 {

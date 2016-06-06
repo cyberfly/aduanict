@@ -7,14 +7,12 @@
         @if ($key==0)
 
             <div class="col-md-12">
-                {!! Form::open(array('route' => ['complain.verify',$complain->complain_id],'method'=>'put','class'=>"form-horizontal", 'id'=>"form1")) !!}
-
 
                 <div class="panel panel-primary">
 
                     <?php
 
-                    $label = 'Maklumbalas Pengguna';
+                    $label = 'Maklumbalas Terkini Pengadu';
 
 
                     if(!empty($complain_action->action_by)){
@@ -31,6 +29,8 @@
 
 
                     <div class="panel-body">
+
+                        <form class="form-horizontal">
 
 
                         <div class="form-group">
@@ -51,52 +51,38 @@
 
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-12 control-label">Tindakan </label>
-                            <div class="col-sm-6 col-xs-10">
-                                {{ $complain_action->action_comment }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-12 control-label">Sebab Lewat</label>
-                            <div class="col-sm-6 col-xs-10">
-                                {{ $complain_action->delay_reason }}
-                            </div>
-                        </div>
 
-                        @if($complain->complain_status_id==3)
+                         <?php if(!empty($complain_action->action_by)){ ?>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Komen Pengguna (Jika Ada)</label>
-                                <div class="col-sm-6">
-                                    <textarea class="form-control" name="user_comment" rows="3">{{ old('user_comment') }}</textarea>
+                                <label class="col-sm-2 col-xs-12 control-label">Tindakan </label>
+                                <div class="col-sm-6 col-xs-10">
+                                    {{ $complain_action->action_comment }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-xs-12 control-label">Sebab Lewat</label>
+                                <div class="col-sm-6 col-xs-10">
+                                    {{ $complain_action->delay_reason }}
                                 </div>
                             </div>
 
-                        @endif
+                        <?php } else { ?>
 
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-
-                                <input type="hidden" name="submit_type" value="{{ old('submit_type') }}" id="submit_type" />
-
-                                @if($complain->complain_status_id==3)
-
-                                    <button type="button" id="submit_finish" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Selesai</button>
-                                    <button type="button" id="submit_reject" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Tidak Selesai</button>
-
-                                @endif
-
+                            <div class="form-group">
+                                <label class="col-sm-2 col-xs-12 control-label">Tindakan </label>
+                                <div class="col-sm-6 col-xs-10">
+                                    {{ $complain_action->user_comment }}
+                                </div>
                             </div>
-                        </div>
 
+                        <?php } ?>
 
+                        </form>
 
                     </div>
 
                 </div>
-
-                {!! Form::close() !!}
 
 
             </div>
@@ -137,7 +123,7 @@
                                 <label class="col-sm-2 col-xs-12 control-label">Status</label>
                                 <div class="col-sm-3 col-xs-10">
 
-
+                                    {{ $complain_action->complain_status->description }}
 
                                 </div>
                             </div>

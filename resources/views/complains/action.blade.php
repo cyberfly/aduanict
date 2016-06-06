@@ -24,7 +24,7 @@
 
     {{--do not show helpdesk form if complain status AGIHAN--}}
 
-    @if($complain->complain_status_id!=7)
+    @if($complain->complain_status_id!=7 &&  $complain->complain_status_id!=5 && $complain->complain_status_id!=4)
 
     {!! Form::open(array('route' => ['complain.update_action',$complain->complain_id],'method'=>'put','class'=>"form-horizontal", 'id'=>'form1')) !!}
 

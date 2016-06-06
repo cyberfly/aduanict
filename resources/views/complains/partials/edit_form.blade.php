@@ -36,8 +36,19 @@
             <label class="col-sm-2 col-xs-12 control-label">Kategori <span class="symbol"> * </span> </label>
             <div class="col-sm-3 col-xs-10">
 
+                {{--Kalau TEKNIKAL EDIT FORM, paparkan nama kategori sahaja, dan ada hidden field exclude_category--}}
+
+                @if($exclude_category!='Y')
+
                 {!! Form::select('complain_category_id', $complain_categories, $complain->complain_category_id.'-'.$complain->unit_id, ['class' => 'form-control chosen', 'id'=>'complain_category_id']); !!}
 
+                @else
+
+                    {{ $complain->complain_category->description }}
+
+                    <input type="hidden" name="exclude_category" value="Y">
+
+                @endif
 
             </div>
 

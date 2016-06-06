@@ -98,15 +98,24 @@
 
                             <a href="{{ route('complain.action', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini</a>
 
-                        @elseif(Entrust::can('edit_complain'))
+                        @elseif(Entrust::can('edit_complain') && $complain->complain_status_id==1)
 
                             <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini</a>
+
+                        @elseif(Entrust::can('verify_complain_action') && $complain->complain_status_id==3)
+
+                            <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Pengesahan</a>
+
+
+                        @elseif(Entrust::can('technical_action_complain'))
+
+                            <a href="{{ route('complain.technical_action', $complain->complain_id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Tindakan</a>
 
                         @endif
 
                         @if(Entrust::can('delete_complain'))
 
-                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</button>
+                        <button type="button" class="btn btn-danger" data-destroy ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</button>
 
                         @endif
 

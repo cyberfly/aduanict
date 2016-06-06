@@ -15,7 +15,16 @@
 
     @else
 
-    @include('complains.partials.verify_form')
+        {{--show the complain info--}}
+        @include('complains.partials.complain_info')
+
+        {{--show verify form if status SAHKAN (P)--}}
+
+        @if($complain->complain_status_id==3)
+
+        @include('complains.partials.verify_form')
+
+        @endif
 
     @endif
 

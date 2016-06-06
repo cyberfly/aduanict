@@ -178,8 +178,20 @@ class ComplainController extends Controller
 
         //after success, redirect to index
 
-        return redirect(route('complain.index'));
+        if($request->ajax()){
 
+            return response()->json(array('flag'=>'Tahniah',
+                                'message'=>'Aduan berjaya di hantar',
+                                'result'=>'success',
+                                'redirect'=>url('complain'))
+                                );
+
+        }
+        else{
+
+            Flash::success('Aduan berjaya di hantar');
+            return redirect(route('complain.index'));
+        }
 
     }
 
@@ -253,13 +265,19 @@ class ComplainController extends Controller
     {
         $complain = Complain::find($id);
 
-        $category_explode = explode('-', $request->complain_category_id);
+        //kalau TEKNIKAL EDIT FORM, tak perlu kategori id
+        //exclude_category from hidden field
 
-        $complain_category_id = $category_explode[0];
-        $unit_id = $category_explode[1];
+        if (!$request->has('exclude_category'))
+        {
+            $category_explode = explode('-', $request->complain_category_id);
 
-        $complain->complain_category_id = $complain_category_id;
-        $complain->unit_id = $unit_id;
+            $complain_category_id = $category_explode[0];
+            $unit_id = $category_explode[1];
+
+            $complain->complain_category_id = $complain_category_id;
+            $complain->unit_id = $unit_id;
+        }
 
         $complain->lokasi_id = $request->lokasi_id;
         $complain->ict_no = $request->ict_no;
@@ -287,13 +305,15 @@ class ComplainController extends Controller
 
         if ($submit_type=='finish')
         {
+            $complain_status_id = 4;
             $complain->verify_status = 1;
-            $complain->complain_status_id = 4;
+            $complain->complain_status_id = $complain_status_id;
         }
         else if ($submit_type=='reject')
         {
+            $complain_status_id = 2;
             $complain->verify_status = 2;
-            $complain->complain_status_id = 2;
+            $complain->complain_status_id = $complain_status_id;
 
         }
 
@@ -304,6 +324,7 @@ class ComplainController extends Controller
         $complain_action = new ComplainAction;
         $complain_action->complain_id = $id;
         $complain_action->user_emp_id = $this->user_id;
+        $complain_action->complain_status_id = $complain_status_id;
         $complain_action->user_comment = $request->user_comment;
 
         $complain_action->save();
@@ -402,6 +423,105 @@ class ComplainController extends Controller
 
         $complain_action->save();
 
+
+        return back();
+    }
+
+    /*
+     * Tindakan helpdesk view
+     * */
+
+    public function technical_action($id)
+    {
+        $complain = Complain::find($id);
+
+        //hanya paparkan dropdown status TINDAKAN atau SAHKAN (P)
+
+        $complain_statuses = ComplainStatus::where('status_id','2')->
+                            orWhere('status_id','3')->
+                            lists('description','status_id');
+
+        //prepare complain category for dropdown
+
+        $complain_categories = $this->get_complain_categories();
+
+        //prepare complain source for dropdown
+
+        $complain_sources = $this->get_complain_sources();
+
+        //prepare locations dropdown
+
+        $locations = $this->get_locations();
+
+        //prepare branch dropdown
+
+        $branches = $this->get_branches();
+
+        //prepare assets dropdown
+
+        $assets = $this->get_assets();
+
+        //prepare kod units dropdown
+
+        $kod_units = $this->get_kod_unit();
+
+        $complain_actions = $this->get_complain_actions($id);
+
+        return view('complains/technical_action',compact('complain','complain_statuses','complain_actions','complain_categories','complain_sources','locations','branches','assets','kod_units'));
+    }
+
+    /*
+     * Tindakan helpdesk update action
+     * */
+
+    public function update_technical_action(Request $request, $id)
+    {
+        $complain = Complain::find($id);
+
+        $complain_status_id = $request->complain_status_id;
+
+        $complain->complain_status_id = $complain_status_id;
+        $complain->action_comment = $request->action_comment;
+        $complain->delay_reason = $request->delay_reason;
+
+        if($request->complain_status_id=='3')
+        {
+            $complain->action_date = Carbon::now();
+
+        }
+
+        $complain->save();
+
+        //simpan action log if SAHKAN (P)
+
+        if($request->complain_status_id=='3')
+        {
+
+            //insert into complain action as logs
+
+            $complain_action = new ComplainAction;
+            $complain_action->complain_id = $id;
+
+            $complain_action->complain_status_id = $complain_status_id;
+
+            $complain_action->action_by = $this->user_id;
+
+            $complain_action->action_comment = $request->action_comment;
+
+            $complain_action->delay_reason = $request->delay_reason;
+
+            $complain_action->save();
+
+        }
+
+        if($request->complain_status_id=='2')
+        {
+            Flash::success('Aduan berjaya dikemaskini');
+        }
+        else if($request->complain_status_id=='3')
+        {
+            Flash::success('Aduan berjaya di hantar untuk pengesahan pengadu');
+        }
 
         return back();
     }
@@ -540,24 +660,19 @@ class ComplainController extends Controller
         return $locations;
     }
 
-    function get_assets_dummy()
-    {
-        $assets = array('1'=>'PC','2'=>'Laptop','3'=>'Projektor');
-
-        return $assets;
-    }
-
     function get_assets()
     {
         $lokasi_id = $this->request->lokasi_id;
 
         if (!empty($lokasi_id))
         {
-            $assets = Asset::where('lokasi_id',$lokasi_id)->lists('butiran','id');
+            $assets = Asset::select('id', DB::raw('CONCAT(id, " - ", butiran) AS butiran_aset'))->
+                        where('lokasi_id',$lokasi_id)->lists('butiran_aset','id');
         }
         else
         {
-            $assets = Asset::select('id', DB::raw('CONCAT(id, " - ", butiran) AS butiran_aset'))->lists('butiran_aset','id');
+            $assets = Asset::select('id', DB::raw('CONCAT(id, " - ", butiran) AS butiran_aset'))->
+                        lists('butiran_aset','id');
 
         }
 

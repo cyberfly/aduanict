@@ -239,7 +239,11 @@
 
                         //reinitiliaze chosen dropdown with new value
 
+                        $("#lokasi_id").val('');
                         $("#lokasi_id").trigger("chosen:updated");
+
+
+
 
                     }
                 });
@@ -261,7 +265,7 @@
                     beforeSend: function() {
 
                     },
-                    success: function (location_data) {
+                    success: function (assets_data) {
 
                         //empty current dropdown option
 
@@ -269,9 +273,16 @@
 
                         //create a new dropdown option using the data provided by json object
 
-                        $.each(location_data, function(key, value) {
+                        $.each(assets_data, function(key, value) {
                             $("#ict_no").append("<option value='"+ key +"'>" + value + "</option>");
                         });
+
+                        //reinitiliaze chosen dropdown with new value
+
+                        $("#ict_no").val('');
+                        $("#ict_no").trigger("chosen:updated");
+
+
 
                     }
                 });

@@ -1,93 +1,51 @@
-{!! Form::open(array('route' => ['complain.verify',$complain->complain_id],'method'=>'put','class'=>"form-horizontal")) !!}
+{!! Form::open(array('route' => ['complain.verify',$complain->complain_id],'method'=>'put','class'=>"form-horizontal", 'id'=>"form1")) !!}
 
-<div class="panel panel-default">
+<div class="panel panel-warning">
     <div class="panel-heading">
-        <h3 class="panel-title">Maklumat Aduan</h3>
+        <h3 class="panel-title">Verifikasi Pengguna</h3>
     </div>
     <div class="panel-body">
+
 
         <div class="form-group">
             <label class="col-sm-2 control-label">Tarikh </label>
             <div class="col-sm-2">
-                <p class="form-control-static">{{  $complain->created_at->format('d/m/Y') }}</p>
+                <p class="form-control-static">{{ $complain->created_at->format('m/d/Y') }}</p>
             </div>
             <label class="col-sm-2 control-label">Masa </label>
             <div class="col-sm-2">
-                <p class="form-control-static">{{  $complain->created_at->format('H:i:s') }}</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Pengadu </label>
-            <div class="col-sm-2">
-                <p class="form-control-static">{{ $complain->user->name }}</p>
-            </div>
-            <label class="col-sm-2 control-label">No. Pekerja </label>
-            <div class="col-sm-2">
-                <p class="form-control-static">{{ $complain->user->id }}</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Bagi Pihak</label>
-            <div class="col-sm-2">
-                <p class="form-control-static">- </p>
-            </div>
-        </div>
-        <div class="form-group  {{ $errors->has('complain_category_id') ? 'has-error' : false }} ">
-            <label class="col-sm-2 col-xs-12 control-label">Kategori </label>
-            <div class="col-sm-3 col-xs-10">
-
-
-
-            </div>
-
-        </div>
-
-        <div class="form-group hide_by_category  {{ $errors->has('branch_id') ? 'has-error' : false }} ">
-            <label class="col-sm-2 control-label">Cawangan </label>
-            <div class="col-sm-6">
-                <div class="input-group">
-
-
-                </div><!-- /input-group -->
+                <p class="form-control-static">{{ $complain->created_at->format('m/d/Y') }}</p>
             </div>
         </div>
 
-        <div class="form-group hide_by_category  {{ $errors->has('lokasi_id') ? 'has-error' : false }} ">
-            <label class="col-sm-2 control-label">Lokasi </label>
-            <div class="col-sm-6">
-                <div class="input-group">
+        @if($complain->complain_status_id==3)
 
-
-                </div><!-- /input-group -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Komen Pengguna (Jika Ada)</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control" name="user_comment" rows="3">{{ old('user_comment') }}</textarea>
+                </div>
             </div>
-        </div>
-        <div class="form-group hide_by_category  {{ $errors->has('ict_no') ? 'has-error' : false }} ">
-            <label class="col-sm-2 control-label">Aset </label>
-            <div class="col-sm-6">
-                <div class="input-group">
 
+        @endif
 
-                </div><!-- /input-group -->
-            </div>
-        </div>
-        <div class="form-group  {{ $errors->has('complain_source_id') ? 'has-error' : false }} ">
-            <label class="col-sm-2 control-label">Kaedah</label>
-            <div class="col-sm-3">
-
-
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Aduan</label>
-            <div class="col-sm-6">
-                <p class="form-control-static">{{ $complain->complain_description }}</p>
-            </div>
-        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
 
+                <input type="hidden" name="submit_type" value="{{ old('submit_type') }}" id="submit_type" />
+
+                @if($complain->complain_status_id==3)
+
+                    <button type="button" id="submit_finish" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Selesai</button>
+                    <button type="button" id="submit_reject" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Tidak Selesai</button>
+
+                @endif
+
             </div>
         </div>
+
+
+
     </div>
 </div>
 <!--end-->

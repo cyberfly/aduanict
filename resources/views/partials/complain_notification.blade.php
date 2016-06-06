@@ -8,6 +8,12 @@
 
     @endrole
 
+@elseif($complain->complain_status_id==3)
+
+    <div class="alert alert-warning">
+        Aduan menunggu pengesahan dari {{ $complain->user->name }}.
+    </div>
+
 @elseif($complain->complain_status_id==4)
 
     <div class="alert alert-warning">
