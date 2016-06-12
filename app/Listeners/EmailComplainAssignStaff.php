@@ -71,7 +71,7 @@ class EmailComplainAssignStaff
             'action_comment'=>$action_comment,
         ];
 
-        Mail::send($email_view, $data, function ($message) use ($data,$subject,$email_to,$email_to_name) {
+        Mail::queue($email_view, $data, function ($message) use ($data,$subject,$email_to,$email_to_name) {
 
             $message->from($data['email_from'], $data['email_from_name']);
 

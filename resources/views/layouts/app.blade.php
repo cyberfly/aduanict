@@ -13,6 +13,9 @@
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/chosen.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/sweetalert.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/pace-theme-flash.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/jqClock.css') }}" rel="stylesheet">
 
     <script>
         var base_url = '{!! url('/') !!}';
@@ -42,7 +45,16 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+
+            <ul class="nav navbar-nav navbar-left">
+
+                <li>
+                    <a href="{{ route('complain.create')  }}">Tambah Aduan</a>
+                </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
 
                     @role('admin')
 
@@ -52,9 +64,6 @@
 
                     @endrole
 
-                    <li>
-                        <a href="{{ route('complain.create')  }}">Tambah Aduan</a>
-                    </li>
                     <li class="">
                         <a href="{{ route('complain.index')  }}">
                             Senarai Aduan
@@ -67,6 +76,38 @@
                         </a>
                     </li>
                     @endrole
+
+                    @permission('statistic_report_table')
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Laporan <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                            @permission('statistic_report_chart')
+
+                            <li class="">
+                                <a href="{{ route('report.monthly_statistic_aduan_ict')  }}">
+                                    Laporan Statistik Graph AduanICT
+                                </a>
+                            </li>
+
+                            @endpermission
+
+                            @permission('statistic_report_table')
+
+                            <li class="">
+                                <a href="{{ route('report.monthly_statistic_table_aduanict')  }}">
+                                    Laporan Tahunan Statistik AduanICT
+                                </a>
+                            </li>
+
+                            @endpermission
+
+                        </ul>
+                    </li>
+
+                    @endpermission
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
@@ -89,6 +130,8 @@
 
     @include('flash::message')
 
+    @yield('filter')
+
     @yield('content')
 
 </div>
@@ -102,17 +145,33 @@
 <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
 <script src="{{URL::asset('js/chosen.jquery.min.js')}}"></script>
 <script src="{{URL::asset('js/sweetalert.min.js')}}"></script>
+<script src="{{URL::asset('js/Chart.js')}}"></script>
+<script src="{{URL::asset('js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{URL::asset('js/pace.min.js')}}"></script>
+<script src="{{URL::asset('js/jqClock.min.js')}}"></script>
 <script src="{{URL::asset('js/ajax_helpers.js')}}"></script>
 </body>
 </html>
-
+<script>
+    window.paceOptions = {
+        ajax: {
+            trackMethods: ['GET', 'POST', 'PUT', 'DELETE', 'REMOVE']
+        }
+    };
+</script>
 <script type="text/javascript">
 
     $( document ).ready(function() {
 
+        //global set field as chosen by class
+
         $(".chosen").chosen();
 
+        //global set field as datepicker by class
 
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+        });
 
     });
 

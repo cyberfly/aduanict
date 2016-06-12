@@ -78,7 +78,7 @@
 
                         @if(Entrust::can('assign_complain'))
 
-                            <a href="{{ route('complain.assign_staff', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Agih</a>
+                            <a href="{{ route('complain.assign_staff', $complain->complain_id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Agihan</a>
 
                         @endif
 

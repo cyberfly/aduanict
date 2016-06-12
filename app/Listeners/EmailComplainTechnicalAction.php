@@ -65,7 +65,7 @@ class EmailComplainTechnicalAction
 
         if ($event->complain->complain_status_id>2)
         {
-            Mail::send($email_view, $data, function ($message) use ($data,$subject,$email_to,$email_to_name) {
+            Mail::queue($email_view, $data, function ($message) use ($data,$subject,$email_to,$email_to_name) {
 
                 $message->from($data['helpdesk_email'], 'ICT Helpdesk');
 

@@ -10,7 +10,9 @@
         "laravelcollective/html": "5.2.*",
         "zizaco/entrust": "5.2.x-dev",
         "laracasts/flash": "^2.0",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "barryvdh/laravel-dompdf": "0.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

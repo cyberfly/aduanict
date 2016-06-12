@@ -15,28 +15,6 @@ Route::get('/', function () {
 return view('auth.login');
 });
 
-/*ROUTE FOR MODULE ADUAN*/
-
-/*
-
-Route::get('aduan/index', function () {
-    return view('complains/index');
-});
-
-Route::get('aduan/create', function () {
-    return view('complains/create');
-});
-
-Route::get('aduan/edit', function () {
-    return view('complains/edit');
-});
-
-Route::get('aduan/show', function () {
-    return view('complains/show');
-});
-
-*/
-
 //unit manager assign route
 
 Route::get('complain/assign','ComplainController@assign')->name('complain.assign');
@@ -70,6 +48,15 @@ Route::resource('complain', 'ComplainController');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+
+/*
+ * Report Routes
+ * */
+
+Route::get('report/monthly_statistic_aduan_ict','ReportController@monthly_statistic_aduan_ict')->name('report.monthly_statistic_aduan_ict');
+Route::get('report/monthly_statistic_table_aduanict','ReportController@monthly_statistic_table_aduanict')->name('report.monthly_statistic_table_aduanict');
+
 
 /** ------------------------------------------
  *  Admin Routes

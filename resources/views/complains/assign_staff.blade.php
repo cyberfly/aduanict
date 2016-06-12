@@ -117,8 +117,22 @@
         $( document ).ready(function() {
 
             $("#submit_assign").click(function() {
-                var submit_type = 'assign';
-                submit_form(submit_type);
+
+                swal({
+                    title: "And pasti untuk agih kepada staff ini?",
+                    text: "Tindakan ini tidak dapat di batalkan kembali",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Ya, saya pasti!",
+                    cancelButtonText: "Tidak",
+                    closeOnConfirm: false
+                    }, function(){
+                        var submit_type = 'assign';
+                        submit_form(submit_type);
+                    }
+                );
+
             });
 
             function submit_form(submit_type)

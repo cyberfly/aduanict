@@ -78,7 +78,7 @@ class EmailComplainUserVerify
             'user_comment'=>$user_comment,
         ];
 
-        Mail::send($email_view, $data, function ($message) use ($data,$subject,$email_to,$email_to_name) {
+        Mail::queue($email_view, $data, function ($message) use ($data,$subject,$email_to,$email_to_name) {
 
             $message->from($data['complain_from_email'], $data['complain_from']);
 

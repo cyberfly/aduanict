@@ -55,7 +55,7 @@ class EmailComplainCreated
                 'complain_description'=>$complain_description,
                 ];
 
-        Mail::send('email.complain_created', $data, function ($message) use ($data,$complain_from_email,$helpdesk_email,$complain_from) {
+        Mail::queue('email.complain_created', $data, function ($message) use ($data,$complain_from_email,$helpdesk_email,$complain_from) {
 
             $message->from($complain_from_email, $complain_from);
 

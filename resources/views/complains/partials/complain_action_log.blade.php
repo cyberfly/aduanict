@@ -40,7 +40,7 @@
                             </div>
                             <label class="col-sm-2 control-label">Masa </label>
                             <div class="col-sm-2">
-                                <p class="form-control-static">{{ $complain_action->created_at->format('m/d/Y') }}</p>
+                                <p class="form-control-static">{{ $complain_action->created_at->format('H:i:s') }}</p>
                             </div>
                         </div>
                         <div class="form-group">

@@ -6,6 +6,7 @@ use App\Asset;
 use App\AssetsLocation;
 use App\Branch;
 use App\ComplainAction;
+use App\ComplainAttachment;
 use App\ComplainStatus;
 use App\Events\ComplainAssignStaff;
 use App\Events\ComplainCreated;
@@ -30,7 +31,7 @@ use Auth;
 use Entrust;
 use Flash;
 
-class ComplainController extends Controller
+class ComplainController extends BaseController
 {
 
     public function __construct(Request $request)
@@ -48,6 +49,8 @@ class ComplainController extends Controller
         //guna ni for function that do not have Request
 
         $this->request = $request;
+        //exclude zakat2u and zakat portal
+        $this->exclude_array = [5,6];
 
     }
 
@@ -58,37 +61,66 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        if (Entrust::hasRole('members'))
+        if (Entrust::hasRole('members') || Entrust::hasRole('unit_manager'))
         {
             /*
              * 1. Filter by user_emp_id
              * 2. Or filter by action_emp_id
              * 3. Or user_id
+             * 4. Or unit_id
              * */
 
-
-            $complains = Complain::where('user_emp_id',$this->user_id)->
-                                    orWhere('action_emp_id', $this->user_id)->
-                                    orWhere('user_id', $this->user_id)->
-                                    orderBy('complain_id','desc')->
-                                    paginate(20);
-        }
-        else if (Entrust::hasRole('unit_manager'))
-        {
-
-            $complains = Complain::where('user_emp_id',$this->user_id)->
-            orWhere('action_emp_id', $this->user_id)->
-            orWhere('user_id', $this->user_id)->
-            orWhere('unit_id', $this->unit_id)->
-            orderBy('complain_id','desc')->
-            paginate(20);
+            $complains = Complain::with('user','assign_user')
+                        ->where(function ($query) {
+                            $query->orWhere('user_emp_id', $this->user_id)
+                                ->orWhere('action_emp_id', $this->user_id)
+                                ->orWhere('user_id', $this->user_id)
+                                ->orWhere('unit_id', $this->unit_id);
+                        });
         }
         else
         {
-            $complains = Complain::orderBy('complain_id','desc')->paginate(20);
+            $complains = Complain::with('user','assign_user');
         }
 
-        return view('complains/index',compact('complains'));
+        //if user filter by Status dropdown
+
+        if (!empty($this->request->complain_status_id))
+        {
+            $complains = $complains->where('complain_status_id',$this->request->complain_status_id);
+        }
+
+        //if user search by textbox carian
+
+        if (!empty($this->request->search_anything))
+        {
+            $complains = $complains->where(function ($query) {
+                            $query->orWhere('complain_id', $this->request->search_anything)
+                                ->orWhere('complain_description', 'like' ,'%'.$this->request->search_anything.'%');
+                        });
+        }
+
+        //if user search by start date
+
+        if (!empty($this->request->start_date))
+        {
+            $start_date = $this->format_date($this->request->start_date);
+            $complains = $complains->whereDate('created_at','>=',$start_date);
+        }
+
+        //if user search by end date
+
+        if (!empty($this->request->end_date))
+        {
+            $end_date = $this->format_date($this->request->end_date);
+            $complains = $complains->whereDate('created_at','<=',$end_date);
+        }
+
+        $complains = $complains->orderBy('complain_id','desc')->paginate(20);
+
+        $complain_statuses = $this->get_complain_statuses();
+
+        return view('complains/index',compact('complains','complain_statuses'));
     }
 
     /**
@@ -163,17 +195,19 @@ class ComplainController extends Controller
         $complain->complain_source_id = $request->complain_source_id;
         $complain->complain_status_id = 1;
 
+        //Zakat2U and Zakat Portal no need lokasi id and asset id
+
         $aduan_category_exception_value = array('5','6');
 
-        if (!in_array($request->complain_category_id,$aduan_category_exception_value))
+        if (!in_array($complain_category_id,$aduan_category_exception_value))
         {
-            //$complain->branch_id = $request->branch_id;
+            $complain->branch_id = $request->branch_id;
             $complain->lokasi_id = $request->lokasi_id;
             $complain->ict_no = $request->ict_no;
         }
         else
         {
-            //$complain->branch_id = null;
+            $complain->branch_id = null;
             $complain->lokasi_id = null;
             $complain->ict_no = null;
         }
@@ -181,6 +215,30 @@ class ComplainController extends Controller
         //save complain object
 
         $complain->save();
+
+        //upload file
+
+        if ($request->hasFile('complain_attachment') && $request->file('complain_attachment')->isValid()) {
+
+            //rename file to make it unique
+
+            $fileName = $complain->complain_id.'-'.$request->file('complain_attachment')->getClientOriginalName();
+
+            //set destination path
+
+            $destinationPath = base_path() . '/public/uploads/';
+
+            //pindah upload gambar ke destination baru
+
+            $request->file('complain_attachment')->move($destinationPath, $fileName);
+
+            $complain_attachment = new ComplainAttachment();
+            $complain_attachment->attachment_filename = $fileName;
+
+            //save polymorphism
+
+            $complain->attachments()->save($complain_attachment);
+        }
 
         //event success complain
 
@@ -213,7 +271,11 @@ class ComplainController extends Controller
      */
     public function show($id)
     {
-        return view('complains/show');
+        $complain = Complain::find($id);
+
+        $complain_actions = $this->get_complain_actions($id);
+
+        return view('complains/show',compact('complain','complain_actions'));
     }
 
     /**
@@ -236,25 +298,18 @@ class ComplainController extends Controller
 
         $complain_sources = $this->get_complain_sources();
 
-        //prepare locations dropdown
+        //if zakat2u, no need called branch,lokasi,asset
 
-        $complain_branch_id = $complain->assets_location->branch_id;
+        $get_branches_locations_assets = $this->prepare_branch_location_assets($complain);
 
-        $location_filter = array('branch_id'=>$complain_branch_id);
-
-        $locations = $this->get_locations($location_filter);
-
-        //prepare branch dropdown
-
-        $branches = $this->get_branches();
-
-        //prepare assets dropdown
-
-        $assets = $this->get_assets();
+        $locations = $get_branches_locations_assets['locations'];
+        $branches = $get_branches_locations_assets['branches'];
+        $assets = $get_branches_locations_assets['assets'];
+        $hide_branches_assets_locations = $get_branches_locations_assets['hide_branches_assets_locations'];
 
         $complain_actions = $this->get_complain_actions($id);
 
-        return view('complains/edit',compact('complain','complain_statuses','complain_actions','complain_categories','complain_sources','locations','branches','assets'));
+        return view('complains/edit',compact('complain','complain_statuses','complain_actions','complain_categories','complain_sources','locations','branches','assets','hide_branches_assets_locations'));
     }
 
     public function get_complain_actions($id)
@@ -289,8 +344,12 @@ class ComplainController extends Controller
             $complain->unit_id = $unit_id;
         }
 
-        $complain->lokasi_id = $request->lokasi_id;
-        $complain->ict_no = $request->ict_no;
+        if (!in_array($complain->complain_category_id, $this->exclude_array))
+        {
+            $complain->branch_id = $request->branch_id;
+            $complain->lokasi_id = $request->lokasi_id;
+            $complain->ict_no = $request->ict_no;
+        }
 
         $complain->save();
 
@@ -303,7 +362,7 @@ class ComplainController extends Controller
      * Pengadu verify whether the complain Status P have been solved, or not
      * */
 
-    public function verify(Request $request, $id)
+    public function verify(ComplainRequest $request, $id)
     {
         $submit_type = $request->submit_type;
 
@@ -364,17 +423,14 @@ class ComplainController extends Controller
 
         $complain_sources = $this->get_complain_sources();
 
-        //prepare locations dropdown
+        //if zakat2u, no need called branch,lokasi,asset
 
-        $locations = $this->get_locations();
+        $get_branches_locations_assets = $this->prepare_branch_location_assets($complain,'action');
 
-        //prepare branch dropdown
-
-        $branches = $this->get_branches();
-
-        //prepare assets dropdown
-
-        $assets = $this->get_assets();
+        $locations = $get_branches_locations_assets['locations'];
+        $branches = $get_branches_locations_assets['branches'];
+        $assets = $get_branches_locations_assets['assets'];
+        $hide_branches_assets_locations = $get_branches_locations_assets['hide_branches_assets_locations'];
 
         //prepare kod units dropdown
 
@@ -382,7 +438,7 @@ class ComplainController extends Controller
 
         $complain_actions = $this->get_complain_actions($id);
 
-        return view('complains/action',compact('complain','complain_statuses','complain_actions','complain_categories','complain_sources','locations','branches','assets','kod_units'));
+        return view('complains/action',compact('complain','complain_statuses','complain_actions','complain_categories','complain_sources','locations','branches','assets','kod_units','hide_branches_assets_locations'));
     }
 
     /*
@@ -414,33 +470,40 @@ class ComplainController extends Controller
             $complain->assign_date = Carbon::now();
         }
 
+        if ($complain_status_id>1)
+        {
+            $complain->action_emp_id = $this->user_id;
+        }
+
         $complain->save();
 
         //event when helpdesk submit action
 
         Event::fire(new ComplainHelpdeskAction($complain));
 
-        //insert into complain action as logs
+        //insert into complain action as logs if status not BARU
 
-        $complain_action = new ComplainAction;
-        $complain_action->complain_id = $id;
-
-        $complain_action->complain_status_id = $complain_status_id;
-
-        $complain_action->action_by = $this->user_id;
-
-        if ($request->submit_type=='finish')
+        if ($complain_status_id>1)
         {
-            $complain_action->action_comment = 'selesai';
+            $complain_action = new ComplainAction;
+            $complain_action->complain_id = $id;
+
+            $complain_action->complain_status_id = $complain_status_id;
+
+            $complain_action->action_by = $this->user_id;
+
+            if ($request->submit_type=='finish')
+            {
+                $complain_action->action_comment = 'selesai';
+            }
+            else{
+                $complain_action->action_comment = $request->action_comment;
+            }
+
+            $complain_action->delay_reason = $request->delay_reason;
+
+            $complain_action->save();
         }
-        else{
-            $complain_action->action_comment = $request->action_comment;
-        }
-
-        $complain_action->delay_reason = $request->delay_reason;
-
-        $complain_action->save();
-
 
         return back();
     }
@@ -467,17 +530,14 @@ class ComplainController extends Controller
 
         $complain_sources = $this->get_complain_sources();
 
-        //prepare locations dropdown
+        //if zakat2u, no need called branch,lokasi,asset
 
-        $locations = $this->get_locations();
+        $get_branches_locations_assets = $this->prepare_branch_location_assets($complain,'action');
 
-        //prepare branch dropdown
-
-        $branches = $this->get_branches();
-
-        //prepare assets dropdown
-
-        $assets = $this->get_assets();
+        $locations = $get_branches_locations_assets['locations'];
+        $branches = $get_branches_locations_assets['branches'];
+        $assets = $get_branches_locations_assets['assets'];
+        $hide_branches_assets_locations = $get_branches_locations_assets['hide_branches_assets_locations'];
 
         //prepare kod units dropdown
 
@@ -485,7 +545,7 @@ class ComplainController extends Controller
 
         $complain_actions = $this->get_complain_actions($id);
 
-        return view('complains/technical_action',compact('complain','complain_statuses','complain_actions','complain_categories','complain_sources','locations','branches','assets','kod_units'));
+        return view('complains/technical_action',compact('complain','complain_statuses','complain_actions','complain_categories','complain_sources','locations','branches','assets','kod_units','hide_branches_assets_locations'));
     }
 
     /*
@@ -545,7 +605,8 @@ class ComplainController extends Controller
             Flash::success('Aduan berjaya di hantar untuk pengesahan pengadu');
         }
 
-        return back();
+//        return back();
+        return redirect(route('complain.show',$id));
     }
 
     public function assign()
@@ -628,97 +689,6 @@ class ComplainController extends Controller
         $complain->delete();
 
         return back();
-    }
-
-    /*
-     * Get complain categories
-     * */
-
-    function get_complain_categories()
-    {
-        //prepare complain category for dropdown
-
-        $complain_categories = ComplainCategory::select('description', DB::raw('CONCAT(category_id, "-", kod_unit) AS category_value'))->lists('description','category_value');
-
-        $complain_categories = array(''=>'Pilih Kategori') + $complain_categories->all();
-
-        return $complain_categories;
-    }
-
-    function get_complain_sources()
-    {
-        $complain_sources = ComplainSource::lists('description','source_id');
-
-        $complain_sources = array(''=>'Pilih Kaedah') + $complain_sources->all();
-
-        return $complain_sources;
-    }
-
-    function get_locations($filter=array())
-    {
-
-        //check for edit filter by branch_id in array
-
-        if (isset($filter['branch_id']) && !empty($filter['branch_id']))
-        {
-            $branch_id = $filter['branch_id'];
-        }
-
-        //check for AJAX request filter by branch_id
-
-        if ($this->request->has('branch_id')) {
-            $branch_id = $this->request->input('branch_id');
-        }
-
-        if (!empty($branch_id))
-        {
-            $locations = AssetsLocation::where('branch_id',$branch_id)->lists('location_description','location_id');
-        }
-        else
-        {
-            $locations = AssetsLocation::lists('location_description','location_id');
-        }
-
-        $locations = array(''=>'Pilih Lokasi') + $locations->all();
-
-        return $locations;
-    }
-
-    function get_assets()
-    {
-        $lokasi_id = $this->request->lokasi_id;
-
-        if (!empty($lokasi_id))
-        {
-            $assets = Asset::select('id', DB::raw('CONCAT(id, " - ", butiran) AS butiran_aset'))->
-                        where('lokasi_id',$lokasi_id)->lists('butiran_aset','id');
-        }
-        else
-        {
-            $assets = Asset::select('id', DB::raw('CONCAT(id, " - ", butiran) AS butiran_aset'))->
-                        lists('butiran_aset','id');
-
-        }
-
-        $assets = array(''=>'Pilih Aset') + $assets->all();
-
-        return $assets;
-    }
-
-    function get_branches()
-    {
-        $branches = Branch::lists('branch_description','id');
-
-        $branches = array(''=>'Pilih Cawangan') + $branches->all();
-
-        return $branches;
-    }
-
-    public function get_kod_unit($filter=array())
-    {
-        $kod_units = KodUnit::lists('butiran','kod_id');
-
-        return $kod_units;
     }
 
 }

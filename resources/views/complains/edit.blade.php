@@ -15,16 +15,16 @@
 
     @else
 
-        {{--show the complain info--}}
-        @include('complains.partials.complain_info')
+        {{--show verify form to pengadu/bagi pihak if status SAHKAN (P)--}}
 
-        {{--show verify form if status SAHKAN (P)--}}
+        @if($complain->complain_status_id==3 && ($complain->user_id==Auth::user()->id || $complain->user_emp_id==Auth::user()->id))
 
-        @if($complain->complain_status_id==3)
-
-        @include('complains.partials.verify_form')
+            @include('complains.partials.verify_form')
 
         @endif
+
+        {{--show the complain info--}}
+        @include('complains.partials.complain_info')
 
     @endif
 
@@ -40,16 +40,46 @@
 
         $( document ).ready(function() {
 
+            //bila pengadu klik butang Selesai
             $("#submit_finish").click(function() {
-                var submit_type = 'finish';
-                submit_form(submit_type);
+
+                swal({
+                    title: "And pasti untuk selesaikan aduan ini?",
+                    text: "Tindakan ini tidak dapat di batalkan kembali",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Ya, saya pasti!",
+                    cancelButtonText: "Tidak",
+                    closeOnConfirm: false
+                }, function(){
+                    var submit_type = 'finish';
+                    submit_form(submit_type);
+                }
+                );
+
             });
+
+            //bila pengadu klik butang Tidak Selesai
 
             $("#submit_reject").click(function() {
-                var submit_type = 'reject';
-                submit_form(submit_type);
-            });
 
+                swal({
+                    title: "And pasti untuk tidak selesaikan aduan ini?",
+                    text: "Tindakan ini tidak dapat di batalkan kembali",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Ya, saya pasti!",
+                    cancelButtonText: "Tidak",
+                    closeOnConfirm: false
+                }, function(){
+                    var submit_type = 'reject';
+                    submit_form(submit_type);
+                }
+                );
+
+            });
 
             function submit_form(submit_type)
             {
@@ -66,4 +96,5 @@
 
     </script>
 
+    @include('complains.partials.form_script')
 @endsection
