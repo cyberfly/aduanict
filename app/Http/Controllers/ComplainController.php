@@ -40,7 +40,7 @@ class ComplainController extends BaseController
         parent::__construct();
 
         //check complain permission
-        $this->middleware('ComplainPermission');
+//        $this->middleware('ComplainPermission');
 
         //guna ni for function that do not have Request
 
