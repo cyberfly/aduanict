@@ -15,19 +15,13 @@ use Debugbar;
 use Illuminate\Support\Facades\View;
 use PDF;
 
-class ReportController extends Controller
+class ReportController extends BaseController
 {
     public function __construct(Request $request)
     {
-        $this->middleware('auth');
+        parent::__construct();
 
-        $this->user_id = 0;
-        $this->unit_id = 0;
-
-        if (Auth::check()) {
-            $this->user_id = Auth::user()->id;
-            $this->unit_id = Auth::user()->kod_id;
-        }
+        $this->middleware('ReportPermission');
 
         //guna ni for function that do not have Request
 

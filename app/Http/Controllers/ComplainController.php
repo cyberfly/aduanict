@@ -36,22 +36,15 @@ class ComplainController extends BaseController
 
     public function __construct(Request $request)
     {
-        $this->middleware('auth');
+        //initialize BaseController constructor
+        parent::__construct();
 
-        $this->user_id = 0;
-        $this->unit_id = 0;
-
-        if (Auth::check()) {
-            $this->user_id = Auth::user()->id;
-            $this->unit_id = Auth::user()->kod_id;
-        }
+        //check complain permission
+        $this->middleware('ComplainPermission');
 
         //guna ni for function that do not have Request
 
         $this->request = $request;
-        //exclude zakat2u and zakat portal
-        $this->exclude_array = [5,6];
-
     }
 
     /**

@@ -87,17 +87,7 @@
 
                 <tr>
                     <td>
-
-                        @if($complain->user)
-
-                            {{ $complain->user->name }}
-
-                        @else
-
-                            {{ $complain->user_id }}
-
-                        @endif
-
+                        {{ $complain->user->name or $complain->user_id }}
                     </td>
                     <td>{{ $complain->complain_id }}</td>
                     <td>{{ str_limit($complain->complain_description,20) }}</td>
@@ -150,7 +140,7 @@
 
                                 <a href="{{ route('complain.action', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Kemaskini</a>
 
-                            @elseif(Entrust::can('edit_complain'))
+                            @elseif(Entrust::can('edit_complain') && ($complain->user_id==Auth::user()->id || $complain->user_emp_id==Auth::user()->id))
 
                                 <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Kemaskini</a>
 
