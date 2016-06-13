@@ -93,132 +93,16 @@
                     <td>{{ str_limit($complain->complain_description,20) }}</td>
                     <td>{{ $complain->created_at }}</td>
                     <td>
-                        <?php
 
-                        $status = '';
+                        {!! CustomHelper::format_complain_status($complain->complain_status_id) !!}
 
-                        if($complain->complain_status_id==1){
-                            $status = '<span class="label label-primary">Baru</span>';
-                        }
-                        else if($complain->complain_status_id==3)
-                        {
-                            $status = '<span class="label label-warning">Sahkan (P)</span>';
-                        }
-                        else if($complain->complain_status_id==2)
-                        {
-                            $status = '<span class="label label-warning">Tindakan</span>';
-                        }
-                        else if($complain->complain_status_id==4)
-                        {
-                            $status = '<span class="label label-success">Sahkan (H)</span>';
-                        }
-                        else if($complain->complain_status_id==5)
-                        {
-                            $status = '<span class="label label-success">Selesai</span>';
-                        }
-                        else if($complain->complain_status_id==7)
-                        {
-                            $status = '<span class="label label-warning">Agihan</span>';
-                        }
-
-                        ?>
-
-                        {!! $status  !!}
                     </td>
                     <td>{{ $complain->assign_user->name or '-' }}</td>
                     <td>
 
                         {!! Form::open(array('route' => ['complain.destroy',$complain->complain_id],'method'=>'delete','class'=>"form-horizontal")) !!}
 
-                        {{--bila status BARU--}}
-
-                        @if($complain->complain_status_id==1)
-
-                            {{--if helpdesk action complain--}}
-
-                            @if(Entrust::can('action_complain') && Entrust::hasRole('ict_helpdesk'))
-
-                                <a href="{{ route('complain.action', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Kemaskini</a>
-
-                            @elseif(Entrust::can('edit_complain') && ($complain->user_id==Auth::user()->id || $complain->user_emp_id==Auth::user()->id))
-
-                                <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Kemaskini</a>
-
-                            @else
-
-                                <a href="{{ route('complain.show', $complain->complain_id) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Papar</a>
-
-                            @endif
-
-                            @if(Entrust::can('delete_complain'))
-
-                                <button type="button" class="btn btn-danger" data-destroy ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</button>
-
-                            @endif
-
-                        {{--bila status TINDAKAN--}}
-                        @elseif($complain->complain_status_id==2)
-
-                            @if(Entrust::can('technical_action_complain') && $complain->user_id!=Auth::user()->id && $complain->user_emp_id!=Auth::user()->id && $complain->action_emp_id==Auth::user()->id)
-
-                                <a href="{{ route('complain.technical_action', $complain->complain_id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Tindakan</a>
-
-                            @elseif(Entrust::can('action_complain') && $complain->action_emp_id==Auth::user()->id)
-
-                                <a href="{{ route('complain.action', $complain->complain_id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Tindakan</a>
-
-                             @else
-
-                                <a href="{{ route('complain.show', $complain->complain_id) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Papar</a>
-
-                            @endif
-
-                        {{--bila status SAHKAN P--}}
-                        @elseif($complain->complain_status_id==3)
-
-                            @if(Entrust::can('verify_complain_action') && $complain->complain_status_id==3 && $complain->user_id==Auth::user()->id)
-
-                                <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-success"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Pengesahan</a>
-
-                            @else
-
-                                <a href="{{ route('complain.show', $complain->complain_id) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Papar</a>
-
-                            @endif
-
-                        @elseif($complain->complain_status_id==4)
-
-                            @if(Entrust::can('action_complain') && Entrust::hasRole('ict_helpdesk'))
-
-                                <a href="{{ route('complain.action', $complain->complain_id) }}" class="btn btn-success"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Pengesahan H</a>
-                            @else
-
-                                <a href="{{ route('complain.show', $complain->complain_id) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Papar</a>
-
-                            @endif
-
-                        @elseif($complain->complain_status_id==5)
-
-                            <a href="{{ route('complain.show', $complain->complain_id) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Papar</a>
-
-                        @elseif($complain->complain_status_id==7)
-
-                            @if(Entrust::can('assign_complain'))
-
-                                <a href="{{ route('complain.assign_staff', $complain->complain_id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> Agihan</a>
-                            @else
-
-                                <a href="{{ route('complain.show', $complain->complain_id) }}" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Papar</a>
-
-                            @endif
-
-                        @else
-
-                            <a href="{{ route('complain.edit', $complain->complain_id) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Kemaskini</a>
-
-                        @endif
-
-
+                        {!! CustomHelper::format_action_button($complain) !!}
 
                         {!! Form::close() !!}
 

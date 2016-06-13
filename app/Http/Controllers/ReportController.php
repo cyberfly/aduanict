@@ -204,25 +204,6 @@ class ReportController extends BaseController
 
         return ['start_date'=>$start_date,'end_date'=>$end_date];
     }
-
-    function get_complain_categories()
-    {
-        //prepare complain category for dropdown
-
-        $complain_categories = ComplainCategory::select('description', DB::raw('CONCAT(category_id, "-", kod_unit) AS category_value'))->lists('description','category_value');
-
-        $complain_categories = array(''=>'Pilih Kategori') + $complain_categories->all();
-
-        return $complain_categories;
-    }
-
-    function get_branches()
-    {
-        $branches = Branch::lists('branch_description','id');
-
-        $branches = array(''=>'Pilih Cawangan') + $branches->all();
-
-        return $branches;
-    }
+    
 
 }
