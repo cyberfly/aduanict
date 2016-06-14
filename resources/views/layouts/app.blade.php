@@ -189,10 +189,22 @@
 
                 },
                 success: function (result_data) {
-                     if(!result_data.logged_in)
+
+                    if(!result_data.logged_in)
                      {
-                        alert('Session expired. Please re-login to continue');
-                        location.reload();
+                         swal({
+                             title: "Oops...",
+                             text: "Session expired. Please re-login to continue",
+                             type: "error",
+                             showCancelButton: false,
+                             confirmButtonColor: "#DD6B55",
+                             confirmButtonText: "OK!",
+                             closeOnConfirm: false
+                         },
+                         function(){
+                             location.reload();
+                         });
+
                      }
                 }
             });
