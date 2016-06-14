@@ -78,4 +78,10 @@ class Complain extends Model
         return $this->belongsTo('App\KodUnit','unit_id','kod_id');
     }
 
+    public function getMalaysiaDateAttribute()
+    {
+        $formatted_date = $this->created_at->format('d-m-Y h:i a');
+        return $formatted_date;
+    }
+
 }

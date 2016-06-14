@@ -140,7 +140,19 @@ class BaseController extends Controller
         }
         else
         {
-            $assets = array(''=>'Pilih Aset');
+            //kalau unit test, hantar senarai ASET
+
+            if (env('APP_ENV') === 'testing')
+            {
+                $assets = Asset::select('id', DB::raw('CONCAT(id, " - ", butiran) AS butiran_aset'))
+                    ->lists('butiran_aset','id');
+
+                $assets = array(''=>'Pilih Aset') + $assets->all();
+            }
+            else
+            {
+                $assets = array(''=>'Pilih Aset');
+            }
         }
 
         return $assets;

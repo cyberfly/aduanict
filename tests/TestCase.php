@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\URL;
+
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     /**
@@ -7,7 +9,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @var string
      */
-    protected $baseUrl = 'http://localhost';
+    protected $baseUrl = 'http://aduanict.dev';
 
     /**
      * Creates the application.

@@ -17,6 +17,11 @@ class ReportPermission
      */
     public function handle($request, Closure $next)
     {
+        //disable middleware on test phpunit
+//        if (env('APP_ENV') === 'testing') {
+//            return $next($request);
+//        }
+
         $route_name = Route::currentRouteName();
 
         if ($route_name=='report.monthly_statistic_aduan_ict')

@@ -33,4 +33,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Complain');
     }
 
+    /**
+     * @return full_name
+     */
+    public function getFullNameAttribute()
+    {
+        $full_name = $this->name.' '.$this->last_name;
+        return ucwords($full_name);
+    }
+
 }

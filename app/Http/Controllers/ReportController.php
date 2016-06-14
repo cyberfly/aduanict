@@ -204,6 +204,6 @@ class ReportController extends BaseController
 
         return ['start_date'=>$start_date,'end_date'=>$end_date];
     }
-    
+
 
 }

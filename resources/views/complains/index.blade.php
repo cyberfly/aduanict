@@ -87,11 +87,11 @@
 
                 <tr>
                     <td>
-                        {{ $complain->user->name or $complain->user_id }}
+                        {{ $complain->user->full_name or $complain->user_id }}
                     </td>
                     <td>{{ $complain->complain_id }}</td>
                     <td>{{ str_limit($complain->complain_description,20) }}</td>
-                    <td>{{ $complain->created_at }}</td>
+                    <td>{{ $complain->malaysia_date }}</td>
                     <td>
 
                         {!! CustomHelper::format_complain_status($complain->complain_status_id) !!}

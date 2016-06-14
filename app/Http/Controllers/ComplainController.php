@@ -40,7 +40,7 @@ class ComplainController extends BaseController
         parent::__construct();
 
         //check complain permission
-//        $this->middleware('ComplainPermission');
+        $this->middleware('ComplainPermission');
 
         //guna ni for function that do not have Request
 
@@ -170,7 +170,7 @@ class ComplainController extends BaseController
             $user_emp_id = Auth::user()->id;
         }
 
-        //initilize complain object
+        //initialize complain object
 
         $complain = new Complain;
         $complain->user_id = $user_id;
