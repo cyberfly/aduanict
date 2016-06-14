@@ -173,6 +173,31 @@
             format: 'dd/mm/yyyy',
         });
 
+        //check Laravel session every 15 sec if expired redirect to login
+
+        setInterval(function() {
+           check_session();
+        }, 5000);
+
+        function check_session()
+        {
+            $.ajax({
+                type: "GET",
+                url: base_url + '/check_session',
+                dataType: "json",
+                beforeSend: function() {
+
+                },
+                success: function (result_data) {
+                     if(!result_data.logged_in)
+                     {
+                        alert('Session expired. Please re-login to continue');
+                        location.reload();
+                     }
+                }
+            });
+        }
+
     });
 
 </script>

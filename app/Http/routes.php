@@ -15,6 +15,10 @@ Route::get('/', function () {
 return view('auth.login');
 });
 
+//check session route
+
+Route::get('check_session','Auth\AuthController@check_session')->name('check_session');
+
 //unit manager assign route
 
 Route::get('complain/assign','ComplainController@assign')->name('complain.assign');

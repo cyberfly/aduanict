@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="008176e1-3550-450e-83f1-4c923837a888" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Complain.php" afterPath="$PROJECT_DIR$/app/Complain.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BaseController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BaseController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ComplainController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ComplainController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/ComplainPermission.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/ComplainPermission.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/ReportPermission.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/ReportPermission.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/complains/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/complains/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/NavigationTest.php" afterPath="$PROJECT_DIR$/tests/NavigationTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TestCase.php" afterPath="$PROJECT_DIR$/tests/TestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
     </list>
     <ignored path="eaduan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,42 +28,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/complains/index.blade.php">
+      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="93" column="51" selection-start-line="93" selection-start-column="51" selection-end-line="93" selection-end-column="51" />
+            <state relative-caret-position="177">
+              <caret line="189" column="18" selection-start-line="189" selection-start-column="18" selection-end-line="189" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/User.php">
+      <file leaf-file-name="login.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="0">
+              <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Complain.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Complain.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+            <state relative-caret-position="0">
+              <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReportPermission.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Middleware/ReportPermission.php">
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="394">
+              <caret line="75" column="26" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="26" />
+              <folding>
+                <element signature="e#45#58#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,45 +73,11 @@
       <file leaf-file-name="ComplainPermission.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/ComplainPermission.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1240">
-              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            <state relative-caret-position="115">
+              <caret line="118" column="5" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
               <folding>
                 <element signature="e#39#56#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComplainFunctionTest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/ComplainFunctionTest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="18" column="31" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="31" />
-              <folding>
-                <element signature="e#7#59#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaseController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4845">
-              <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-              <folding>
-                <element signature="e#40#54#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComplainController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComplainController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -128,8 +90,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Events/ComplainTechnicalAction.php" />
         <option value="$PROJECT_DIR$/resources/views/email/complain_technical_action_sahkanP.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/reports/monthly_statistic_aduan_ict.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/reports/monthly_statistic_table_aduanict.blade.php" />
@@ -144,14 +104,12 @@
         <option value="$PROJECT_DIR$/app/Listeners/EmailComplainUserVerify.php" />
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Queue/DatabaseQueue.php" />
         <option value="$PROJECT_DIR$/app/ComplainAttachment.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/public/css/jqClock.css" />
         <option value="$PROJECT_DIR$/resources/views/complains/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/action.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/partials/edit_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/assign_index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/assign_staff.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/partials/form_script.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/partials/verify_form.blade.php" />
@@ -161,7 +119,6 @@
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/resources/views/errors/403.blade.php" />
         <option value="$PROJECT_DIR$/app/Helpers/Helper.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Helpers/CustomHelper.php" />
         <option value="$PROJECT_DIR$/tests/ExampleTest.php" />
         <option value="$PROJECT_DIR$/tests/NavigationTests.php" />
@@ -178,7 +135,12 @@
         <option value="$PROJECT_DIR$/app/Http/Middleware/ReportPermission.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/resources/views/complains/index.blade.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Complain.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CustomAuthController.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
       </list>
     </option>
   </component>
@@ -258,7 +220,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -272,7 +238,105 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aduanict" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -283,7 +347,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="Com&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;ComCon&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;Com.php&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;index&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;User&#9;null&#9;null&#10;C&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Report&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ReportPermission.php&#10;ComPer&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Base&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/BaseController.php&#10;Cperm&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Request&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;routes&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/routes.php&#10;create&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/create.blade.php&#10;Compl&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Repor&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ReportController.php&#10;tesc&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/tests/TestCase.php&#10;app.b&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/layouts/app.blade.php&#10;conf/a&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/config/app.php&#10;index.&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;ReC&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ReportController.php&#10;CoCon&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;test&#9;null&#9;null&#10;ComP&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;RepPer&#9;null&#9;null&#10;kern&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Kernel.php&#10;Ad&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/AdminPermissionsGuard.php&#10;Guard&#9;null&#9;null&#10;app/http/ker&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Kernel.php&#10;edit&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/edit.blade.php&#10;CoRe&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;ReportC&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ReportController.php&#10;Complain&#9;null&#9;null&#10;ComRe&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;AdmiUser&#9;null&#9;null&#10;AdminRo&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/Admin/AdminRolesController.php&#10;BaseContr&#9;null&#9;null&#10;report/&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/reports&#10;update_te&#9;null&#9;null&#10;sho&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/show.blade.php&#10;ComC&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;ComRE&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;veri&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/partials/verify_form.blade.php&#10;edi&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/partials/edit_form.blade.php&#10;ver&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/partials/verify_form.blade.php&#10;ComplainRe&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;app&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/layouts/app.blade.php&#10;ass&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/assign_staff.blade.php&#10;route&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/routes.php&#10;Complai&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;Complain.php&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php" />
+    <property name="SearchEverywhereHistoryKey" value="Base&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/BaseController.php&#10;Perm&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;CustomA&#9;null&#9;null&#10;routes&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/routes.php&#10;create&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/create.blade.php&#10;app&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/layouts/app.blade.php&#10;conf/app&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/config/app.php&#10;Com&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;ComCon&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;Com.php&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Complain.php&#10;index&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;User&#9;null&#9;null&#10;C&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Report&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ReportPermission.php&#10;ComPer&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Cperm&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Request&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;Compl&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;Repor&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ReportController.php&#10;tesc&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/tests/TestCase.php&#10;app.b&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/layouts/app.blade.php&#10;conf/a&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/config/app.php&#10;index.&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/index.blade.php&#10;ReC&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ReportController.php&#10;CoCon&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;test&#9;null&#9;null&#10;ComP&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/ComplainPermission.php&#10;RepPer&#9;null&#9;null&#10;kern&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Kernel.php&#10;Ad&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Middleware/AdminPermissionsGuard.php&#10;Guard&#9;null&#9;null&#10;app/http/ker&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Kernel.php&#10;edit&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/edit.blade.php&#10;CoRe&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;ReportC&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ReportController.php&#10;Complain&#9;null&#9;null&#10;ComRe&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;AdmiUser&#9;null&#9;null&#10;AdminRo&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/Admin/AdminRolesController.php&#10;BaseContr&#9;null&#9;null&#10;report/&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/reports&#10;update_te&#9;null&#9;null&#10;sho&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/show.blade.php&#10;ComC&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Controllers/ComplainController.php&#10;ComRE&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;veri&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/partials/verify_form.blade.php&#10;edi&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/partials/edit_form.blade.php&#10;ver&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/partials/verify_form.blade.php&#10;ComplainRe&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/app/Http/Requests/ComplainRequest.php&#10;ass&#9;FILE&#9;file:///Users/applehorizons/Development/aduanict/resources/views/complains/assign_staff.blade.php" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="true" />
@@ -361,12 +425,12 @@
       <workItem from="1464157610826" duration="32527000" />
       <workItem from="1464570022482" duration="100203000" />
       <workItem from="1464963922593" duration="1728000" />
-      <workItem from="1465003151364" duration="134315000" />
+      <workItem from="1465003151364" duration="137690000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311991000" />
+    <option name="totallyTimeSpent" value="315366000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1024" height="768" extended-state="0" />
@@ -449,38 +513,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/roles/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="66" column="36" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/queue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Testing/DatabaseMigrations.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Queue/DatabaseQueue.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -573,14 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
           <caret line="133" column="18" selection-start-line="120" selection-start-column="16" selection-end-line="133" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/complains/partials/form_script.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -713,14 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="214" column="58" selection-start-line="214" selection-start-column="58" selection-end-line="214" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Helpers/CustomHelper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -728,22 +744,6 @@
           <folding>
             <element signature="e#31#43#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/complains/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3928">
-          <caret line="184" column="11" selection-start-line="184" selection-start-column="11" selection-end-line="184" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -755,14 +755,6 @@
             <element signature="e#40#55#0#PHP" expanded="true" />
             <marker date="1465868276000" expanded="true" signature="3004:3512" placeholder="SELECT compl... " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,36 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4845">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding>
-            <element signature="e#40#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ComplainFunctionTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="18" column="31" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="31" />
-          <folding>
-            <element signature="e#7#59#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/ComplainPermission.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1240">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding>
-            <element signature="e#39#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/NavigationUnitManagerTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
@@ -837,14 +799,6 @@
           <folding>
             <element signature="e#7#20#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,7 +815,7 @@
         <state relative-caret-position="465">
           <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding>
-            <element signature="e#7#20#0#PHP" expanded="true" />
+            <element signature="e#7#20#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -874,10 +828,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/complains/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="187" column="42" selection-start-line="187" selection-start-column="42" selection-end-line="187" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Complain.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+        <state relative-caret-position="186">
+          <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomAuth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CustomAuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+          <folding>
+            <element signature="e#40#54#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/complains/partials/form_script.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="142" column="17" selection-start-line="142" selection-start-column="17" selection-end-line="142" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ComplainFunctionTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="18" column="31" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="31" />
+          <folding>
+            <element signature="e#7#59#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/ComplainPermission.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="118" column="5" selection-start-line="118" selection-start-column="5" selection-end-line="118" selection-end-column="5" />
+          <folding>
+            <element signature="e#39#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="75" column="26" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="26" />
+          <folding>
+            <element signature="e#45#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="189" column="18" selection-start-line="189" selection-start-column="18" selection-end-line="189" selection-end-column="18" />
           <folding />
         </state>
       </provider>
